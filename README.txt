@@ -1,4 +1,4 @@
-# WishListMiniProject
+#WishListMiniProject
 Miniprojekt: Ønskeskyen-klon Projektbeskrivelse I dette miniprojekt skal vi udvikle en klon af Ønskeskyen.dk, en platform hvor brugere kan oprette ønskelister og dele dem med andre. Projektet vil blive udviklet i Java Spring Boot med MySQL som database og Thymeleaf som frontend-templating engine.
 
 Teknologier Backend: Java Spring Boot
