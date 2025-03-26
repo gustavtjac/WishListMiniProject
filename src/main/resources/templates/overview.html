@@ -22,16 +22,17 @@
     </nav>
 </header>
 <main>
-    <div>
-        <h1 th:text="'Here are your wishlists ' + ${user.getName()} + ' :)'"></h1>
+    <div id="overview-welcome-text">
+        <h1  th:text="'Here are your wishlists ' + ${user.getName()} + ' :)'"></h1>
     </div>
     <div id="ønskeliste-sektion">
 
         <a th:href="@{'/wishlist/' + ${liste.getId()}}" th:each="liste : ${ønskelister}" class="ønskeliste-kort">
-            <div>
+            <div class="ønskeliste-kort-indhold">
             <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
             <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Ønsker'}"></p>
-        </div></a>
+        </div>
+        </a>
 
         <a th:href="@{/createwishlist}" class="ønskeliste-kort-opret">
             <div>
