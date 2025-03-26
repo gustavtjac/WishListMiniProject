@@ -1,6 +1,7 @@
 package mrrock.com.wishlistminiproject.Controller;
 
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +18,7 @@ public class WishlistController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(HttpSession session){
         return "loginPage";
 
     }
