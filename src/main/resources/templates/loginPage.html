@@ -24,8 +24,20 @@
 <main>
     <article>
         <h2>Login to Wishhub</h2>
-        <p>May all your wishes come true!</p>
+        <div class="loginBox">
+            <form th:action="@{/login}" th:method="post">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required id="username">
+
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required id="password">
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </article>
+
+
 
 </main>
 
