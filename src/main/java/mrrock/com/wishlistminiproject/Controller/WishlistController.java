@@ -30,18 +30,18 @@ private UserService userService;
     public String loginPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
             model.addAttribute("error",error);
-            return "redirect:/overview";
+            return "loginPage";
         }
-        return "loginPage";
+        return "redirect:/overview";
     }
     //endpoint til at kunne tilgå registersiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/register")
     public String registerPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
             model.addAttribute("error",error);
-            return "redirect:/overview";
+            return "registerPage";
         }
-        return "registerPage";
+        return "redirect:/overview";
     }
 
     //endpoint til at authenticate at oplysningerne matcher i databasen og på den måde blive logget ind
