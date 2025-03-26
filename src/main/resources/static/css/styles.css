@@ -139,3 +139,24 @@ input[type=text], input[type=password] {
     color: red;
     border-radius: 8%;
 }
+#forside-main-indhold{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
+#main-indhold-tekst{
+    max-width: 30%;
+}
+.forside-element{
+    margin: 50px;
+}
+#main-indhold-tekst-knap{
+    font-weight: bold;
+    margin-top: 40px;
+background-color: #8ecae6;
+    height: 40px;
+    width: 180px;
+}
