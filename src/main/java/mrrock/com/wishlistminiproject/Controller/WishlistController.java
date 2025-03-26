@@ -25,6 +25,7 @@ private UserService userService;
         return "landingpage";
     }
 
+    //endpoint til at kunne tilgå loginsiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/login")
     public String loginPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
@@ -33,7 +34,7 @@ private UserService userService;
         }
         return "loginPage";
     }
-
+    //endpoint til at kunne tilgå registersiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/register")
     public String registerPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
@@ -43,6 +44,7 @@ private UserService userService;
         return "registerPage";
     }
 
+    //endpoint til at authenticate at oplysningerne matcher i databasen og på den måde blive logget ind
     @PostMapping("/login")
     public String requestLogIn(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
         User authedUser = userService.authenticateLogin(username,password);
@@ -54,6 +56,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         return "redirect:/login";
     }
 
+    //endpoint til at oprette en bruger, den tjekker om det findes i forvejen og authenticater derefter
     @PostMapping("/register")
     public String requestRegister(@RequestParam String username, @RequestParam String password, @RequestParam String name,HttpSession session, RedirectAttributes redirectAttributes) {
         User newUser = userService.registerNewUser(username,password,name);
