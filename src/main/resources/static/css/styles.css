@@ -1,9 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+:root {
+    /* Colors */
+    --primær-farve: #8ecae6;  /* Green */
+    --secondary-color: #ffffff; /* Orange */
+    --background-color: #f4f4f4;
+    --text-color: #000000;
+    /* Typography */
+    --font-family: 'Lilita One', sans-serif;
+    --font-size-base: 16px;
+    --font-size-heading: 24px;
+
+    /* Shadows */
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
 * {
+
+    font-family: var(--font-family);
     text-decoration: none;
+    font-weight: lighter;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
 body {
@@ -138,4 +158,62 @@ input[type=text], input[type=password] {
 #errorText{
     color: red;
     border-radius: 8%;
+}
+#forside-main-indhold{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+
+}
+#main-indhold-tekst{
+    max-width: 30%;
+}
+.forside-element{
+    margin: 50px;
+}
+#main-indhold-tekst-knap{
+    font-weight: bold;
+    margin-top: 40px;
+background-color: #8ecae6;
+    height: 40px;
+    width: 180px;
+}
+.ønskeliste-kort{
+    color: black;
+    margin: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 320px;
+    width: 250px;
+    border-radius: 12%;
+    background-color: #8ecae6;
+}
+.ønskeliste-kort-opret{
+    color: black;
+    margin: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 320px;
+    width: 250px;
+    border-radius: 12%;
+    background-color: #8ecae6;
+
+}
+.ønskeliste-kort-opret:hover{
+   cursor: grab;
+}
+#ønskeliste-sektion{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.ønskeliste-indhold{
+    margin-top: 20px;
 }

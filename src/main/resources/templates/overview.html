@@ -23,12 +23,22 @@
 </header>
 <main>
     <div>
-        <h1 th:text="'Here are your wishes ' + ${user.getName()} + ' :)'"></h1>
-
+        <h1 th:text="'Here are your wishlists ' + ${user.getName()} + ' :)'"></h1>
     </div>
+    <div id="ønskeliste-sektion">
 
+        <a th:href="@{'/wishlist/' + ${liste.getId()}}" th:each="liste : ${ønskelister}" class="ønskeliste-kort">
+            <div>
+            <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
+            <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Ønsker'}"></p>
+        </div></a>
 
-
+        <a th:href="@{/createwishlist}" class="ønskeliste-kort-opret">
+            <div>
+                <h3>Create a new wishlist!</h3>
+            </div>
+        </a>
+    </div>
 
 </main>
 

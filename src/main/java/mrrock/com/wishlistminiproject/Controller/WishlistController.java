@@ -3,6 +3,7 @@ package mrrock.com.wishlistminiproject.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
+import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller()
 public class WishlistController {
@@ -21,7 +25,13 @@ public class WishlistController {
 private UserService userService;
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
-    public String landingPage() {
+    public String landingPage(HttpSession session,Model model) {
+        if((User) session.getAttribute("user") !=null){
+            model.addAttribute("loggedIn",true);
+            return "landingpage";
+        }
+
+        model.addAttribute("loggedIn",false);
         return "landingpage";
     }
 
@@ -73,6 +83,12 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
             return "redirect:/login";
         }
         model.addAttribute("user",(User) session.getAttribute("user"));
+        List<Wishlist> wishlists = new ArrayList<>();
+        Wishlist wishlist = new Wishlist();
+        wishlist.setName("Gustavs liste");
+        wishlist.setWishList(new ArrayList<>());
+        wishlists.add(wishlist);
+        model.addAttribute("ønskelister",wishlists);
         return "overview";
     }
 
