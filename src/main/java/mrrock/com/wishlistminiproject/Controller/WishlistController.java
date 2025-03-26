@@ -67,6 +67,20 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
         return "redirect:/register";
     }
+    @GetMapping("/overview")
+    public String overviewPage(HttpSession session,Model model){
+        if ((User) session.getAttribute("user")==null){
+            return "redirect:/login";
+        }
+        model.addAttribute("user",(User) session.getAttribute("user"));
+        return "overview";
+    }
+
+    @PostMapping("logoff")
+    public String logOff(HttpSession session){
+        session.setAttribute("user",null);
+        return "redirect:/";
+    }
 
 
 }
