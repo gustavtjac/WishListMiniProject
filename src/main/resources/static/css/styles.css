@@ -6,16 +6,6 @@
     font-family: sans-serif;
 }
 
-main{
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    padding: 32px;
-    text-align: center;
-    background-color: #f4f4f9;
-    box-sizing: border-box;
-}
-
 body {
     background-color: #f4f4f9;
     color: #333;
@@ -42,6 +32,16 @@ body {
 
 .logo a:hover {
     color: #219ebc;
+}
+
+.formBox {
+    width: 500px;
+    padding: 50px;
+    margin: 20px;
+    border-color: #8ecae6;
+    border-width: 15px;
+    border-style: solid;
+    border-radius: 5%;
 }
 
 ul {
@@ -125,4 +125,13 @@ footer {
     text-align: center;
     background-color: #8ecae6;
     color: white;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
 }
