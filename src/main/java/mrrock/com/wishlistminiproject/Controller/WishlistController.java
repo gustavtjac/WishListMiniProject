@@ -21,7 +21,13 @@ public class WishlistController {
 private UserService userService;
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
-    public String landingPage() {
+    public String landingPage(HttpSession session,Model model) {
+        if((User) session.getAttribute("user") !=null){
+            model.addAttribute("loggedIn",true);
+            return "landingpage";
+        }
+
+        model.addAttribute("loggedIn",false);
         return "landingpage";
     }
 

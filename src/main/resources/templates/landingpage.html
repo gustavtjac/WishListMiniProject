@@ -15,8 +15,16 @@
             <ul>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <button><a th:href="@{/register}">Register</a></button>
-                <button><a th:href="@{/login}">Login</a></button>
+                <div th:if="${!loggedIn}">
+
+                    <button><a th:href="@{/register}">Register</a></button>
+                    <button><a th:href="@{/login}">Login</a></button>
+                </div>
+
+                <div th:if="${loggedIn}">
+                   <button><a th:href="@{/overview}">Go to Wishes</a></button>
+                </div>
+
             </ul>
         </div>
     </nav>
