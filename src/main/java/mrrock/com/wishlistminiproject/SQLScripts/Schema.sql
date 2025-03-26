@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS WishlistDB;
 CREATE DATABASE WishlistDB;
 USE WishlistDB;
 
