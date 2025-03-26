@@ -76,5 +76,11 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         return "overview";
     }
 
+    @PostMapping("logoff")
+    public String logOff(HttpSession session){
+        session.setAttribute("user",null);
+        return "redirect:/";
+    }
+
 
 }

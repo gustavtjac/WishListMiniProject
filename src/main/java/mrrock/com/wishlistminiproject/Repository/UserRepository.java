@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Repository
@@ -31,13 +32,19 @@ public class UserRepository {
 
     public User registerNewUser(String username,String password,String name){
        String sql="Insert into USER (USER_USERNAME,USER_PASSWORD,USER_NAME) values (?,?,?)";
-       int rowsAffected = jdbcTemplate.update(sql,username,password,name);
-       if (rowsAffected>0){
-           return authenticateLogin(username,password).get(0);
+       try {
+           int rowsAffected = jdbcTemplate.update(sql,username,password,name);
+           if (rowsAffected>0){
+               return authenticateLogin(username,password).get(0);
+           }else {
+               return null;
+           }
+       }catch (Exception e){
+return null;
        }
-       else {
-           return null;
-       }
+
+
+
     }
 
 

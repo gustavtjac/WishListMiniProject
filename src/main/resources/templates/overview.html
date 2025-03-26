@@ -15,7 +15,8 @@
                 <li><a href="#">+</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
-                <li><button><a href="#">Log off</a></button></li>
+                <li>
+                    <form th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
             </ul>
         </div>
     </nav>

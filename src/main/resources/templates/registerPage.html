@@ -24,6 +24,7 @@
 <main>
     <article>
         <h2>Create an account on Wishhub</h2>
+        <p id="errorText" th:text="${error}"></p>
         <div class="formBox">
             <form th:action="@{/register}" th:method="post">
                 <label for="name"><b>Name</b></label>

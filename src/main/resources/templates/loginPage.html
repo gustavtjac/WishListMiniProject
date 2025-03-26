@@ -23,6 +23,7 @@
 <main>
     <article>
         <h2>Login to Wishhub</h2>
+        <p id="errorText" th:text="${error}"></p>
         <div class="formBox">
             <form th:action="@{/login}" th:method="post">
                 <label for="username"><b>Username</b></label>
