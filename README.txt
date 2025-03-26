@@ -1,36 +1,45 @@
-Ønkselisteprojekt gruppe 3 - Gustav, Jonas, Frederik, Long
+🌟 Ønskeskyen Projekt 🎁
+Projektmedlemmer
 
+💻 Udvikler: Gustav
+📋 Scrum Master: Jonas
+💻 Udvikler: Frederik
+💻 Udvikler: Long
 
-Miniprojekt: Ønskeskyen-klon Projektbeskrivelse I dette miniprojekt skal vi udvikle en klon af Ønskeskyen.dk, en platform hvor brugere kan oprette ønskelister og dele dem med andre. Projektet vil blive udviklet i Java Spring Boot med MySQL som database og Thymeleaf som frontend-templating engine.
+🚀 Projekt Overblik: Ønskeskyen-klon
+Projektbeskrivelse
+I dette mini-projekt udvikler vi en klon af Ønskeskyen.dk, en platform hvor brugere kan oprette og dele ønskelister med hinanden. Projektet vil blive udviklet ved hjælp af Java Spring Boot, med MySQL som database og Thymeleaf som frontend-templating engine.
+🛠 Teknologier
 
-Teknologier Backend: Java Spring Boot
-
+Backend: Java Spring Boot
 Database: MySQL
-
 Frontend: Thymeleaf (HTML, CSS, JavaScript)
 
-Funktionaliteter Brugeroprettelse & login (med sikker autentificering)
+✨ Kerdefunktionaliteter
 
+Brugerregistrering & sikker login
 Oprettelse og håndtering af ønskelister
-
 Tilføjelse, redigering og sletning af ønsker
-
 Deling af ønskelister med andre brugere
+Reservering af et ønske (markering som taget)
+Integration med eksterne links (f.eks. webshops)
 
-Reservér et ønske, så andre kan se, at det er taget
+🎯 Projektmål
 
-Integration med eksterne links (f.eks. til webshops)
+Opnå praktisk erfaring med Spring Boot og MySQL
+Anvende Thymeleaf til dynamisk HTML-rendering
+Design af en effektiv databasestruktur
+Implementering af robust brugerautentificering og sikkerhed
 
-Mål At få praktisk erfaring med Spring Boot og MySQL
+🌈 Mulige Ekstra Funktioner
 
-At anvende Thymeleaf til dynamisk HTML-rendering
+OAuth-integration (Google Login)
+Tilføjelse af billeder til ønsker
+Opdateringsnotifikationer for ønskelister
 
-At designe en velfungerende database
-
-At håndtere brugergodkendelse og -sikkerhed
-
-Mulige Ekstra Features Integration af OAuth (Google Login)
-
-Mulighed for at tilføje billeder til ønskerne
-
-Notifikationer når en liste bliver opdateret
+📦 Kom i Gang
+(Detaljerede opsætningsinstruktioner tilføjes)
+🤝 Bidrag
+(Retningslinjer for bidrag tilføjes)
+📄 Licens
+(Licensoplysninger tilføjes)
