@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller()
 public class WishlistController {
@@ -25,8 +26,9 @@ private UserService userService;
     }
 
     @GetMapping("/login")
-    public String loginPage(HttpSession session,Model model) {
+    public String loginPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
+            model.addAttribute("error",error);
             return "redirect:/overview";
         }
         return "loginPage";
@@ -41,12 +43,13 @@ private UserService userService;
     }
 
     @PostMapping("/login")
-    public String requestLogIn(@RequestParam String username, @RequestParam String password,HttpSession session) {
+    public String requestLogIn(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
         User authedUser = userService.authenticateLogin(username,password);
 if (authedUser!= null){
     session.setAttribute("user",authedUser);
     return "redirect:/overview";
 }
+redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
         return "redirect:/login";
     }
 
