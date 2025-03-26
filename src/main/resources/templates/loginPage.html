@@ -24,7 +24,7 @@
 <main>
     <article>
         <h2>Login to Wishhub</h2>
-        <div class="loginBox">
+        <div class="formBox">
             <form th:action="@{/login}" th:method="post">
                 <label for="username"><b>Username</b></label>
                 <input type="text" placeholder="Enter Username" name="username" required id="username">
@@ -33,6 +33,7 @@
                 <input type="password" placeholder="Enter Password" name="password" required id="password">
 
                 <button type="submit">Login</button>
+                <button><a th:href="@{/register}">Register</a></button>
             </form>
         </div>
     </article>
