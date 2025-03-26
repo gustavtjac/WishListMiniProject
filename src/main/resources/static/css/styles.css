@@ -1,7 +1,6 @@
 *{
     text-decoration: none;
-    padding: 0px;
-    margin: 0px;
+    margin: 0;
 }
 
 .navbar{
@@ -46,4 +45,21 @@ button a{
     color: black;
     font-weight: bold;
     font-size: 15px;
+}
+
+article h1{
+    width: 50%;
+    float: left;
+    padding: 10px;
+}
+
+article{
+    padding: 15px;
+}
+
+article p{
+    width: 50%;
+    float: right;
+    padding: 10px;
+
 }
