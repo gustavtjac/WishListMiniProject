@@ -35,8 +35,9 @@ private UserService userService;
     }
 
     @GetMapping("/register")
-    public String registerPage(HttpSession session,Model model) {
+    public String registerPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
         if ((User) session.getAttribute("user") == null) {
+            model.addAttribute("error",error);
             return "redirect:/overview";
         }
         return "registerPage";
@@ -54,8 +55,14 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
     }
 
     @PostMapping("/register")
-    public String requestRegister(@RequestParam String username, @RequestParam String password, @RequestParam String name) {
-        return "";
+    public String requestRegister(@RequestParam String username, @RequestParam String password, @RequestParam String name,HttpSession session, RedirectAttributes redirectAttributes) {
+        User newUser = userService.registerNewUser(username,password,name);
+        if (newUser!=null) {
+            session.setAttribute("user", newUser);
+            return "redirect:/overview";
+        }
+        redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
+        return "redirect:/register";
     }
 
 

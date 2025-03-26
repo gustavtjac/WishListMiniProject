@@ -23,4 +23,11 @@ public class UserService {
     }
 
 
+    public User registerNewUser(String username,String password,String name){
+        userRepository.registerNewUser(username,password,name);
+
+        return null;
+    }
+
+
 }

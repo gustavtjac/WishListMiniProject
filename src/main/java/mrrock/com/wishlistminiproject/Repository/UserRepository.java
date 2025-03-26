@@ -17,6 +17,17 @@ public class UserRepository {
       return jdbcTemplate.query(sql,new UserRowMapper(),username,password);
     }
 
+    public User registerNewUser(String username,String password,String name){
+       String sql="Insert into USER (USER_USERNAME,USER_PASSWORD,USER_NAME) values (?,?,?)";
+       int rowsAffected = jdbcTemplate.update(sql,username,password,name);
+       if (rowsAffected>0){
+           return authenticateLogin(username,password).get(0);
+       }
+       else {
+           return null;
+       }
+    }
+
 
 
 
