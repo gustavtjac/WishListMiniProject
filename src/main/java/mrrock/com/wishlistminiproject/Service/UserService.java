@@ -37,7 +37,10 @@ public class UserService {
 
     public User registerNewUser(String username,String password,String name){
       return userRepository.registerNewUser(username,password,name);
+    }
 
+    public Wishlist createNewWishList(String name,int userID){
+       return userRepository.createNewWishList(name,userID);
     }
 
 

@@ -58,6 +58,17 @@ return null;
         return jdbcTemplate.query(sql,new WishRowMapper(),id);
     }
 
+public Wishlist createNewWishList(String name,int userID){
 
+        String sql = "Insert into WISHLIST (WISHLIST_USER_ID,WISHLIST_NAME) values (?,?)";
+        int rowsAffected = jdbcTemplate.update(sql,userID,name);
+       if (rowsAffected>0){
+           Wishlist wishlist = new Wishlist();
+           wishlist.setName(name);
+           wishlist.setUserID(userID);
+           return wishlist;
+        }
+       return null;
+}
 
 }

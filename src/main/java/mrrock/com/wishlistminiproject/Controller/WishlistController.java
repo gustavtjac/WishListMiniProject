@@ -3,6 +3,7 @@ package mrrock.com.wishlistminiproject.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
+import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -87,6 +88,26 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
     public String logOff(HttpSession session){
         session.setAttribute("user",null);
         return "redirect:/";
+    }
+
+    @GetMapping("/createnewlist")
+    public String createNewListSite(HttpSession session,Model model, @RequestParam(value = "error", required = false) String error){
+        if (session.getAttribute("user")==null){
+            return "redirect:/login";
+        }
+        model.addAttribute("error",error);
+        model.addAttribute("user",(User) session.getAttribute("user"));
+        return "newWishlist";
+    }
+
+    @PostMapping("/createnewlist")
+    public String newListRequest(@RequestParam String name, @RequestParam int userID, RedirectAttributes redirectAttributes){
+        Wishlist wishlist = userService.createNewWishList(name,userID);
+        if (wishlist==null){
+            redirectAttributes.addAttribute("error","Something Went Wrong Try Again");
+            return "redirect:/createnewlist";
+        }
+        return "redirect:/overview";
     }
 
 

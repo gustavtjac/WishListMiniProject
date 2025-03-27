@@ -181,7 +181,7 @@ background-color: #8ecae6;
 }
 .ønskeliste-kort{
     color: black;
-    margin: 50px;
+    margin: 43px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -237,4 +237,16 @@ background-color: #8ecae6;
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+}
+
+.create-new-wish-layout{
+    font-size: 2rem;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-color: black;
+    border-width: 1px;
+
 }
