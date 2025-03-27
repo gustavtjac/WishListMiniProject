@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <title>Your Wishes</title>
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <div class="navdiv">
+            <div class="logo"><a th:href="@{/}">Wishhub</a></div>
+            <ul>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li>
+                    <form th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="create-new-wish-layout">
+        <p>Create new Wishlist</p>
+        <p th:text="${error}"></p>
+        <form class="formBox" th:action="@{/createnewlist}" th:method="post" >
+            <label for="name"><b>Wishlist name</b></label>
+            <input type="text" placeholder="Enter Wishlist name" name="name" required id="name">
+            <label for="userID"></label>
+            <input type="hidden" name="userID" required id="userID" th:value="${user.getId()}">
+
+            <button type="submit">Create wishlist!</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>
