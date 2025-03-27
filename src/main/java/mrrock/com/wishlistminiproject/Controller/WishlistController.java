@@ -83,12 +83,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
             return "redirect:/login";
         }
         model.addAttribute("user",(User) session.getAttribute("user"));
-        List<Wishlist> wishlists = new ArrayList<>();
-        Wishlist wishlist = new Wishlist();
-        wishlist.setName("Gustavs liste");
-        wishlist.setWishList(new ArrayList<>());
-        wishlists.add(wishlist);
-        model.addAttribute("ønskelister",wishlists);
+        model.addAttribute("ønskelister",userService.getAllwishListsFromUserID(((User) session.getAttribute("user")).getId()));
         return "overview";
     }
 
