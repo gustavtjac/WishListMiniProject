@@ -3,7 +3,6 @@ package mrrock.com.wishlistminiproject.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
-import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller()
 public class WishlistController {
-    private User user;
 
 
     @Autowired
@@ -26,7 +22,7 @@ private UserService userService;
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
     public String landingPage(HttpSession session,Model model) {
-        if((User) session.getAttribute("user") !=null){
+        if(session.getAttribute("user") !=null){
             model.addAttribute("loggedIn",true);
             return "landingpage";
         }
@@ -38,7 +34,7 @@ private UserService userService;
     //endpoint til at kunne tilgå loginsiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/login")
     public String loginPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
-        if ((User) session.getAttribute("user") == null) {
+        if (session.getAttribute("user") == null) {
             model.addAttribute("error",error);
             return "loginPage";
         }
@@ -47,7 +43,7 @@ private UserService userService;
     //endpoint til at kunne tilgå registersiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/register")
     public String registerPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
-        if ((User) session.getAttribute("user") == null) {
+        if (session.getAttribute("user") == null) {
             model.addAttribute("error",error);
             return "registerPage";
         }
@@ -79,10 +75,10 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
     }
     @GetMapping("/overview")
     public String overviewPage(HttpSession session,Model model){
-        if ((User) session.getAttribute("user")==null){
+        if (session.getAttribute("user")==null){
             return "redirect:/login";
         }
-        model.addAttribute("user",(User) session.getAttribute("user"));
+        model.addAttribute("user",session.getAttribute("user"));
         model.addAttribute("ønskelister",userService.getAllwishListsFromUserID(((User) session.getAttribute("user")).getId()));
         return "overview";
     }
