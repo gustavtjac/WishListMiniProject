@@ -1,6 +1,8 @@
 package mrrock.com.wishlistminiproject.Service;
 
 import mrrock.com.wishlistminiproject.Models.User;
+import mrrock.com.wishlistminiproject.Models.Wish;
+import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,16 @@ public class UserService {
             return authenticatedUser.getFirst();
         }
 
+    }
+
+
+
+    public List<Wishlist> getAllwishListsFromUserID(int id){
+        List<Wishlist> userWishList = userRepository.getAllwishListsFromUserID(id);
+        for (Wishlist wishlist : userWishList){
+            wishlist.setWishList(userRepository.getWishFromWishlistID(wishlist.getId()));
+        }
+        return userWishList;
     }
 
 
