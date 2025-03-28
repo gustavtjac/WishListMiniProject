@@ -85,4 +85,17 @@ return null;
         return null;
     }
 
+
+    public boolean checkIfUserOwnList(int listId, User user){
+        String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
+        List<Wishlist> wishlistList = jdbcTemplate.query(sql,new WishlistRowMapper(),user.getId());
+        for (Wishlist wishlist : wishlistList){
+            if (wishlist.getId() == listId){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

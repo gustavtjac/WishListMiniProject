@@ -121,7 +121,8 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
 
     @GetMapping("/{id}/createnewwish")
     public String createNewWishSite(@PathVariable int id,HttpSession session,Model model, @RequestParam(value = "error", required = false) String error){
-        if (session.getAttribute("user")==null){
+
+        if (session.getAttribute("user")==null|| !userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
             return "redirect:/login";
         }
         model.addAttribute("error",error);
