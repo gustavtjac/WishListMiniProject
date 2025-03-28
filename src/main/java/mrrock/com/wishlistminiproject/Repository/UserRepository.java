@@ -105,4 +105,32 @@ return null;
         return false;
     }
 
+    public Wish getWishFromID(int wishID){
+        String sql = "Select * from wish where WISH_ID = ?";
+        List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
+        if (!wishlist.isEmpty()){
+            return wishlist.getFirst();
+        }
+        return null;
+    }
+
+    public boolean checkIfUserOwnWish(User user, int wishID){
+        if (user==null){
+            return false;
+        }
+
+        String sqlGetLists = "Select * from wishlist where WISHLIST_USER_ID = ?";
+String sqlGetWish = "Select * from wish where WISH_ID = ?";
+
+List<Wish> list = jdbcTemplate.query(sqlGetWish,new WishRowMapper(),wishID);
+
+for (Wishlist wishlist : jdbcTemplate.query(sqlGetLists,new WishlistRowMapper(),user.getId())){
+    if (wishlist.getId()==list.getFirst().getWishlistID()){
+        return true;
+    }
+}
+
+return false;
+    }
+
 }
