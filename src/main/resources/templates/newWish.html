@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+  <title>Your Wishes</title>
+</head>
+<body>
+<header>
+  <nav class="navbar">
+    <div class="navdiv">
+      <div class="logo"><a th:href="@{/}">Wishhub</a></div>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+        <li>
+          <form th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <div class="create-new-wish-layout">
+    <p>Create new Wish</p>
+    <p th:text="${error}"></p>
+    <form class="formBox" th:action="@{/createnewwish}" th:method="post">
+      <label for="name"><b>Wish name</b></label>
+      <input type="text" placeholder="Enter Wish name" name="name" required id="name">
+
+      <label for="price"><b>Price</b></label>
+      <input type="number" step="0.01" placeholder="Enter Price" name="price" required id="price">
+
+      <label for="description"><b>Description</b></label>
+      <textarea placeholder="Enter Description" name="description" required id="description"></textarea>
+
+      <label for="wishURL"><b>Wish link</b></label>
+      <input type="url" placeholder="Enter Wish URL" name="wishURL" id="wishURL">
+
+      <label for="imgURL"><b>Image link</b></label>
+      <input type="url" placeholder="Enter Image URL" name="imgURL" id="imgURL">
+
+      <input type="hidden" name="wishlistID" th:value="${wishlistID}" required id="wishlistID">
+
+      <button class="align-center-button" type="submit">Create wish!</button>
+    </form>
+  </div>
+</main>
+</body>
+</html>
