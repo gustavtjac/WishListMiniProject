@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <title>Ønske</title>
 </head>
 <body>
@@ -18,6 +19,23 @@
         </div>
     </nav>
 </header>
+
+<main>
+    <div class="ønske-indhold" th:each="liste : ${wish}">
+        <img class="wish-image" th:src="${liste.getImgURL()}" alt="image">
+        <h3 class="ønskeindhold" th:text="${liste.getName()}"></h3>
+        <p class="ønskeindhold" th:text="${'Price ' + liste.getPrice()}"></p>
+
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+</footer>
 
 </body>
 </html>
