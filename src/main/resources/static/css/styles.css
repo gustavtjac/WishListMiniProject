@@ -273,8 +273,20 @@ background-color: #8ecae6;
     border-width: 1px;
 
 }
-#align-center-button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.wish-image {
+
+    border-radius: 12%;
+    margin-top: 5px;
+
+    width: 240px;
+    height: 200px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #219ebc;
+
 }
+#align-center-button{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
