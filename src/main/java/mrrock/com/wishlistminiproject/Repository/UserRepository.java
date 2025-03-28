@@ -73,7 +73,12 @@ return null;
 
     public Wishlist getWishlistFromID(int id) {
         String sql = "Select * from wishlist where WISHLIST_ID = ?";
-        return jdbcTemplate.query(sql,new WishlistRowMapper(),id).get(0);
+
+       List<Wishlist> wishlists = jdbcTemplate.query(sql,new WishlistRowMapper(),id);
+       if (!wishlists.isEmpty()){
+           return wishlists.getFirst();
+       }
+       return null;
     }
 
     public Wish createNewWish(Wish wish){
@@ -88,10 +93,12 @@ return null;
 
     public boolean checkIfUserOwnList(int listId, User user){
         String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
-        List<Wishlist> wishlistList = jdbcTemplate.query(sql,new WishlistRowMapper(),user.getId());
-        for (Wishlist wishlist : wishlistList){
-            if (wishlist.getId() == listId){
-                return true;
+        if (user != null){
+            List<Wishlist> wishlistList = jdbcTemplate.query(sql,new WishlistRowMapper(),user.getId());
+            for (Wishlist wishlist : wishlistList){
+                if (wishlist.getId() == listId){
+                    return true;
+                }
             }
         }
 
