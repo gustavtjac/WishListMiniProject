@@ -76,4 +76,13 @@ return null;
         return jdbcTemplate.query(sql,new WishlistRowMapper(),id).get(0);
     }
 
+    public Wish createNewWish(Wish wish){
+        String sql = "Insert into WISH (WISH_WISHLIST_ID,WISH_NAME,WISH_DESC,WISH_IMGURL,WISH_PRICE,WISH_URL) values (?,?,?,?,?,?)";
+        int rowsAffected = jdbcTemplate.update(sql,wish.getWishlistID(),wish.getName(),wish.getDescription(),wish.getImgURL(),wish.getPrice(),wish.getWishURL());
+        if (rowsAffected>0){
+            return wish;
+        }
+        return null;
+    }
+
 }

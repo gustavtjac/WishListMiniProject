@@ -24,6 +24,9 @@ public class UserService {
 
     }
 
+    public Wish createNewWish(Wish wish){
+        return userRepository.createNewWish(wish);
+    }
 
 
     public List<Wishlist> getAllwishListsFromUserID(int id){
