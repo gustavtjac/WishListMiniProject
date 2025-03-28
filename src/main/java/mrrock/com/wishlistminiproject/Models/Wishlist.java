@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Wishlist {
     private int id;
-private String name;
-private int userID;
-private List<Wish> wishList;
+    private String name;
+    private int userID;
+    private List<Wish> wishList;
 
     public Wishlist() {
     }
