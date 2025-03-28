@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -110,12 +111,13 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         return "redirect:/overview";
     }
 
-    @GetMapping("/whishlist")
-    public String showWishList(HttpSession session, Model model, int id) {
+    @GetMapping("/wishlist/{id}")
+    public String showWishList(HttpSession session, Model model, @PathVariable int id) {
         if (session.getAttribute("user")==null){
-            return "redirect:/login";
         }
+
         model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
-        return "wishList";
+        model.addAttribute("wishlist", userService.getWishlistFromID(id));
+        return "wishlist";
     }
 }

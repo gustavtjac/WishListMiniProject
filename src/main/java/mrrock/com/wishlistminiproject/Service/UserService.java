@@ -47,5 +47,8 @@ public class UserService {
        return userRepository.createNewWishList(name,userID);
     }
 
+    public Wishlist getWishlistFromID(int id) {
+        return userRepository.getWishlistFromID(id);
+    }
 
 }
