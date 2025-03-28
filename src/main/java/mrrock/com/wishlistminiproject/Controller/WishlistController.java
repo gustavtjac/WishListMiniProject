@@ -3,15 +3,13 @@ package mrrock.com.wishlistminiproject.Controller;
 
 import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
+import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -120,4 +118,29 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         model.addAttribute("wishlist", userService.getWishlistFromID(id));
         return "wishlist";
     }
+
+    @GetMapping("/{id}/createnewwish")
+    public String createNewWishSite(@PathVariable int id,HttpSession session,Model model, @RequestParam(value = "error", required = false) String error){
+
+        if (session.getAttribute("user")==null|| !userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
+            return "redirect:/login";
+        }
+        model.addAttribute("error",error);
+        model.addAttribute("wishlistID",id);
+        return "newWish";
+    }
+    @PostMapping("/createnewwish")
+    public String newWishRequest(@ModelAttribute Wish wish,RedirectAttributes redirectAttributes){
+        Wish newWish =userService.createNewWish(wish);
+        if (newWish==null){
+            redirectAttributes.addAttribute("error","Something Went Wrong Try Again");
+            return "redirect:/createnewlist";
+        }
+        return "redirect:/wishlist/" + wish.getWishlistID();
+    }
+
+
+
+
+
 }

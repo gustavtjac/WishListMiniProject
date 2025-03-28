@@ -24,6 +24,9 @@ public class UserService {
 
     }
 
+    public Wish createNewWish(Wish wish){
+        return userRepository.createNewWish(wish);
+    }
 
 
     public List<Wishlist> getAllwishListsFromUserID(int id){
@@ -51,4 +54,8 @@ public class UserService {
         return userRepository.getWishlistFromID(id);
     }
 
+
+    public boolean checkIfUserOwnList(int listId,User user){
+        return userRepository.checkIfUserOwnList(listId,user);
+    }
 }
