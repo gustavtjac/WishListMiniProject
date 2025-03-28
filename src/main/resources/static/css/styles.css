@@ -63,6 +63,26 @@ body {
     border-radius: 5%;
 }
 
+.formBox input, .formBox textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.formBox label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.formBox button {
+}
+
+
+.formBox button:hover {
+    background-color: #0056b3;
+}
+
 ul {
     display: flex;
     align-items: center;
@@ -253,3 +273,20 @@ background-color: #8ecae6;
     border-width: 1px;
 
 }
+.wish-image {
+
+    border-radius: 12%;
+    margin-top: 5px;
+
+    width: 240px;
+    height: 200px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #219ebc;
+
+}
+#align-center-button{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+ }
