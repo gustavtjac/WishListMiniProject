@@ -13,8 +13,8 @@
         <div class="navdiv">
             <div class="logo"><a th:href="@{/}">Wishhub</a></div>
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/contact}">Contact</a></li>
                 <div th:if="${!loggedIn}">
 
                     <button><a th:href="@{/register}">Register</a></button>
