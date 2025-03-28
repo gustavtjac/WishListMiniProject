@@ -28,6 +28,7 @@
 
         <a th:href="@{'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
             <div class="ønskeliste-kort-indhold">
+                <img class="wish-image" th:src="${liste.getImgURL()}" alt="image">
                 <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
                 <p class="ønskeliste-indhold" th:text="${'Price ' + liste.getPrice()}"></p>
             </div>

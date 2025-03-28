@@ -183,7 +183,7 @@ background-color: #8ecae6;
     color: black;
     margin: 43px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     height: 320px;
@@ -248,5 +248,17 @@ background-color: #8ecae6;
     align-items: center;
     border-color: black;
     border-width: 1px;
+
+}
+.wish-image {
+
+    border-radius: 12%;
+    margin-top: 5px;
+
+    width: 240px;
+    height: 200px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #219ebc;
 
 }
