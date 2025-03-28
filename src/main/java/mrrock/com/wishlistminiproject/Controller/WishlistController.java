@@ -145,6 +145,21 @@ private UserService userService;
         return "redirect:/wishlist/" + wish.getWishlistID();
     }
 
+    @GetMapping("wishlist/{wishlistID}/wish/{wishID}")
+    public String viewWishPage(@PathVariable int wishID,HttpSession session,Model model){
+
+
+model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
+
+
+
+
+
+        model.addAttribute("user",(User) session.getAttribute("user"));
+        model.addAttribute("wish",userService.getWishFromID(wishID));
+        return "wish";
+    }
+
 
 
 

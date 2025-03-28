@@ -58,4 +58,15 @@ public class UserService {
     public boolean checkIfUserOwnList(int listId,User user){
         return userRepository.checkIfUserOwnList(listId,user);
     }
+
+    public Wish getWishFromID(int wishID){
+
+        return userRepository.getWishFromID(wishID);
+    }
+
+
+
+    public boolean checkIfUserOwnsWish(User user, int wishID){
+        return userRepository.checkIfUserOwnWish(user,wishID);
+    }
 }
