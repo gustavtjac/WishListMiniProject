@@ -1,9 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
-    <title>Wishlist</title>
+    <meta charset="UTF-8">
+    <title>Your Wishes</title>
 </head>
 <body>
 <header>
@@ -19,19 +20,30 @@
         </div>
     </nav>
 </header>
-
 <main>
+    <div id="overview-welcome-text">
+        <h1  th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
+    </div>
+    <div id="ønskeliste-sektion">
 
+        <a th:href="@{'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
+            <div class="ønskeliste-kort-indhold">
+                <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
+                <p class="ønskeliste-indhold" th:text="${'Price ' + liste.getPrice()}"></p>
+            </div>
+        </a>
 
-
-
+        <a th:href="@{/createnewlist}" class="ønskeliste-kort-opret">
+            <div>
+                <h3>Create a new Wish!</h3>
+            </div>
+        </a>
+    </div>
 
 </main>
 
-<footer>
 
 
-</footer>
 
 
 </body>

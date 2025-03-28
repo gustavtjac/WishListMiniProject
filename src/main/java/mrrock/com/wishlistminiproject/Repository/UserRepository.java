@@ -71,4 +71,9 @@ return null;
        return null;
     }
 
+    public Wishlist getWishlistFromID(int id) {
+        String sql = "Select * from wishlist where WISHLIST_ID = ?";
+        return jdbcTemplate.query(sql,new WishlistRowMapper(),id).get(0);
+    }
+
 }
