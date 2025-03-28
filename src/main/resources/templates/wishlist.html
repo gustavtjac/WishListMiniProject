@@ -20,7 +20,7 @@
                 <div class="nav-user-button"></div>
 
                 <div class="nav-buttons">
-                    <form th:action="@{/logoff}" method="post">
+                    <form th:action="@{/logoff}" th:if="${user!=null}" method="post">
                         <button data-role="logoff" type="submit"> <a>Sign Out</a> </button>
                     </form>
                 </div>
