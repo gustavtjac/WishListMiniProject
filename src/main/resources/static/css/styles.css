@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 :root {
     /* Colors */
-    --primær-farve: #8ecae6;  /* Green */
+    --primær-farve: #00c8ff;  /* Green */
     --secondary-color: #ffffff; /* Orange */
     --background-color: #f4f4f4;
     --text-color: #000000;
@@ -26,20 +26,23 @@
 }
 
 body {
-    background-color: #f4f4f9;
+    background-color: white;
     color: #333;
 }
 
-.navbar {
-    background-color: #8ecae6;
-    padding: 15px 30px;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
-}
-
-.navdiv {
+.nav-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    background-color: #00c8ff;
+
+    padding: 15px 100px;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    height: 100px;
+}
+
+.logo {
+    margin-right: auto;
 }
 
 .logo a {
@@ -52,6 +55,76 @@ body {
 .logo a:hover {
     color: #219ebc;
 }
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2em;
+    font-weight: lighter;
+
+}
+.nav-content a {
+    color: white;
+    font-size: 20px;
+    transition: color 0.3s;
+}
+
+li {
+    list-style: none;
+}
+
+.nav-content a:hover {
+    color: #333;
+}
+
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.nav-buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 130px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: color 0.3s;
+}
+
+.nav-buttons button[data-role="register"] {
+    background-color: #00aaff;
+    color: white;
+}
+
+.nav-buttons button[data-role="login"] {
+    background-color: #00689C;
+    color: white;
+}
+
+.nav-buttons button[data-role="logoff"] {
+    background-color: #00aaff;
+    color: white;
+}
+
+.nav-buttons a:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
 
 .formBox {
     width: 500px;
@@ -83,55 +156,15 @@ body {
     background-color: #0056b3;
 }
 
-ul {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
 
-li {
-    list-style: none;
-}
 
-li a {
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    transition: color 0.3s;
-}
 
-li a:hover {
-    color: #333;
-}
-
-button {
-    background-color: white;
-    border: 2px solid #333;
-    border-radius: 10px;
-    padding: 5px 15px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-button:hover {
-    background-color: #333;
-    color: white;
-}
-
-button a {
-    color: #333;
-    font-weight: bold;
-    font-size: 15px;
-    text-decoration: none;
-}
 
 article {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 40px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
@@ -165,7 +198,7 @@ footer {
     width: 100%;
     padding: 10px;
     text-align: center;
-    background-color: #8ecae6;
+    background-color: #00c8ff;
     color: white;
 }
 
@@ -186,8 +219,8 @@ input[type=text], input[type=password] {
     align-items: center;
     flex-direction: row;
     justify-content: space-evenly;
-
-
+    margin: 100px;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
 }
 #main-indhold-tekst{
     max-width: 30%;
