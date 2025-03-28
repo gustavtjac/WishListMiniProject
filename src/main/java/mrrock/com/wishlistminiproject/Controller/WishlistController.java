@@ -55,12 +55,12 @@ private UserService userService;
     //endpoint til at authenticate at oplysningerne matcher i databasen og på den måde blive logget ind
     @PostMapping("/login")
     public String requestLogIn(@RequestParam String username, @RequestParam String password, HttpSession session, RedirectAttributes redirectAttributes) {
-        User authedUser = userService.authenticateLogin(username,password);
-if (authedUser!= null){
+            User authedUser = userService.authenticateLogin(username,password);
+    if (authedUser!= null){
     session.setAttribute("user",authedUser);
     return "redirect:/overview";
-}
-redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
+    }
+    redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
         return "redirect:/login";
     }
 
@@ -75,6 +75,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         redirectAttributes.addAttribute("error","Invalid Username or Password, try again");
         return "redirect:/register";
     }
+
     @GetMapping("/overview")
     public String overviewPage(HttpSession session,Model model){
         if (session.getAttribute("user")==null){
