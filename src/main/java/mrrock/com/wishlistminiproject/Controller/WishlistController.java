@@ -111,9 +111,14 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
 
     @GetMapping("/wishlist/{id}")
     public String showWishList(HttpSession session, Model model, @PathVariable int id) {
-        if (session.getAttribute("user")==null){
+
+        model.addAttribute("owner",false);
+        if (userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
+            model.addAttribute("owner",true);
         }
 
+
+        model.addAttribute("user",(User) session.getAttribute("user"));
         model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
         model.addAttribute("wishlist", userService.getWishlistFromID(id));
         return "wishlist";

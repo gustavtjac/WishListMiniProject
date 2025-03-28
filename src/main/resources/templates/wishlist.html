@@ -15,14 +15,15 @@
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
                 <li>
-                    <form th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
+                    <form th:if="${user!=null}" th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
             </ul>
         </div>
     </nav>
 </header>
 <main>
     <div id="overview-welcome-text">
-        <h1  th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
+        <h1 th:if="${wish.size()==0}" th:text="${wishlist.getName()} + ' is empty :)'"></h1>
+        <h1 th:if="${wish.size()>0}" th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
     </div>
     <div id="ønskeliste-sektion">
 
@@ -34,7 +35,7 @@
             </div>
         </a>
 
-        <a th:href="@{'/' + ${id} + '/createnewwish'}" class="ønskeliste-kort-opret">
+        <a th:if="${owner}" th:href="@{'/' + ${id} + '/createnewwish'}" class="ønskeliste-kort-opret">
             <div>
                 <h3>Create a new Wish!</h3>
             </div>
