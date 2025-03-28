@@ -34,6 +34,10 @@ public class UserService {
         return userWishList;
     }
 
+    public List<Wish> getAllWishesFromWishListID(int id) {
+        return userRepository.getWishFromWishlistID(id);
+    }
+
 
     public User registerNewUser(String username,String password,String name){
       return userRepository.registerNewUser(username,password,name);

@@ -110,5 +110,12 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         return "redirect:/overview";
     }
 
-
+    @GetMapping("/whishlist")
+    public String showWishList(HttpSession session, Model model, int id) {
+        if (session.getAttribute("user")==null){
+            return "redirect:/login";
+        }
+        model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
+        return "wishList";
+    }
 }

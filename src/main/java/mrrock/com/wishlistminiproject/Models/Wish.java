@@ -1,5 +1,7 @@
 package mrrock.com.wishlistminiproject.Models;
 
+import java.util.List;
+
 public class Wish {
     private int id;
     private int wishlistID;
