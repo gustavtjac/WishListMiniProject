@@ -10,41 +10,45 @@
 
 <header>
     <nav class="navbar">
-        <div class="navdiv">
-            <div class="logo"><a th:href="@{/}">Wishhub</a></div>
-            <ul>
-                <li><a th:href="@{/about}">About</a></li>
-                <li><a th:href="@{/contact}">Contact</a></li>
-                <div th:if="${!loggedIn}">
+        <div class="nav-container">
+            <div class="logo">
+                <a th:href="@{/}">Wishhub</a>
+            </div>
 
-                    <button><a th:href="@{/register}">Register</a></button>
-                    <button><a th:href="@{/login}">Login</a></button>
+            <div class="nav-content">
+                <a th:href="@{/about}">About</a>
+                <a th:href="@{/contact}">Contact</a>
+                <div class="nav-user-button"></div>
+
+                <div class="nav-buttons">
+                    <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
+                    <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{/overview}">Go to Wishes!</a></button>
+                    <form th:action="@{/logoff}" method="post">
+                        <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
+                    </form>
                 </div>
-
-                <div th:if="${loggedIn}">
-                   <button><a th:href="@{/overview}">Go to Wishes</a></button>
-                </div>
-
-            </ul>
+            </div>
         </div>
     </nav>
 </header>
 
 <main>
-<article id="forside-main-indhold">
-    <div class="forside-element">
-        <img style="width: 100%; height: 400px" src="images/katgave.jpg"  alt="Billede af kat">
-    </div>
-    <div id="main-indhold-tekst" class="forside-element">
+    <article id="forside-main-indhold">
+        <div class="forside-element">
+            <img style="width: 100%; height: 400px" src="images/katgave.jpg"  alt="Billede af kat">
+        </div>
+
+        <div id="main-indhold-tekst" class="forside-element">
         <h2>Welcome to Wishhub!</h2>
         <p>Welcome to WishHub – the easiest way to share your wishlists! Whether it’s for birthdays, holidays, or special occasions, WishHub helps you create and share personalized wishlists with friends and family. Say goodbye to guessing and ensure every gift is thoughtful and exactly what you want. Start sharing your wishlist today!</p>
         <a th:href="@{/register}"><button id="main-indhold-tekst-knap">Get Started now!</button></a>
-    </div>
-</article>
+        </div>
+    </article>
 
 </main>
 
-<footer>
+<footer class="foot">
 <p>Disclaimer: Vi sørger ikke for at du får dine gaver det er ikke vores problem det er et dig problem.</p>
 </footer>
 
