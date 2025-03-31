@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta charset="UTF-8">
@@ -45,7 +46,7 @@
             <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
             <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Wishes'}"></p>
                 <form th:if="${owner}" th:action="@{'/edit/wishlist/'+ ${liste.getId()}}">
-                    <button>Edit Wish</button>
+                    <button>Edit Wishlist</button>
                 </form>
             </div>
         </a>

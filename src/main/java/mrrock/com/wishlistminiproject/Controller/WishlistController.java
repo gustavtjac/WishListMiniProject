@@ -105,7 +105,8 @@ if ((User)session.getAttribute("user")!=null){
         }
 
         model.addAttribute("error",error);
-        model.addAttribute("user",(User) session.getAttribute("user"));
+        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
+
         return "newWishlist";
     }
 
@@ -128,7 +129,7 @@ if ((User)session.getAttribute("user")!=null){
         if (userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
             model.addAttribute("owner",true);
         }
-
+        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
         model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
         model.addAttribute("user",userService.getUserFromUsername(username));
         model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
@@ -142,18 +143,20 @@ if ((User)session.getAttribute("user")!=null){
         if (session.getAttribute("user")==null|| !userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
             return "redirect:/login";
         }
+
+        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
         model.addAttribute("error",error);
         model.addAttribute("wishlistID",id);
         return "newWish";
     }
     @PostMapping("/createnewwish")
-    public String newWishRequest(@ModelAttribute Wish wish,RedirectAttributes redirectAttributes){
+    public String newWishRequest(@ModelAttribute Wish wish,RedirectAttributes redirectAttributes, HttpSession session){
         Wish newWish =userService.createNewWish(wish);
         if (newWish==null){
             redirectAttributes.addAttribute("error","Something Went Wrong Try Again");
             return "redirect:/createnewlist";
         }
-        return "redirect:/wishlist/" + wish.getWishlistID();
+        return "redirect:/" +((User) session.getAttribute("user")).getUsername()+ "/wishlist/" + wish.getWishlistID();
     }
 
     @GetMapping("/{username}/wishlist/{wishlistID}/wish/{wishID}")
@@ -173,23 +176,27 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
         if (userService.checkIfUserOwnList(wishlistID,(User) session.getAttribute("user"))){
             userService.deleteWishlist(wishlistID);
         }
-        return "redirect:/overview";
+        return "redirect:/"+ ((User) session.getAttribute("user")).getUsername();
     }
 
 
     @PostMapping("/delete/{wishID}")
     public String deleteWish(@PathVariable int wishID, HttpSession session, @RequestParam int wishListID){
+
+
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
             userService.deleteWishFromID(wishID);
         }
 
-        return "redirect:/wishlist/" + wishListID;
+        return "redirect:/"+ ((User) session.getAttribute("user")).getUsername()+ "/wishlist/" + wishListID;
     }
 
     @GetMapping("/edit/wishlist/{wishListID}")
     public String editWishListPage(Model model, HttpSession session, @PathVariable int wishListID){
+        model.addAttribute("loggedInUser",session.getAttribute("user"));
         if (userService.checkIfUserOwnList(wishListID,(User) session.getAttribute("user"))){
             model.addAttribute("wishlist",userService.getWishlistFromID(wishListID));
+            model.addAttribute("owner",true);
             return "editWishlist";
         }
         return "redirect:/overview";
@@ -212,12 +219,16 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
 
     @GetMapping("/edit/wish/{wishID}")
     public String editWishPage(Model model, HttpSession session, @PathVariable int wishID){
+
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
             model.addAttribute("wish",userService.getWishFromID(wishID));
+            model.addAttribute("owner",true);
+            model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
+
             return "editWish";
         }
 
-        return "redirect:/overview";
+        return "redirect:/" +((User) session.getAttribute("user")).getUsername();
     }
 @PostMapping("/editwish")
     public String editWishRequest(Model model, HttpSession session,@ModelAttribute Wish wish){

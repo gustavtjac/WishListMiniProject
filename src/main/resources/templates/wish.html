@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +23,7 @@
                 <div class="nav-buttons">
                     <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
                     <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
-                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{/overview}">Go to Wishes!</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${user.getUsername()}}">Go to Wishes!</a></button>
                     <form th:action="@{/logoff}" method="post">
                         <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
                     </form>
@@ -42,7 +43,7 @@
             <h3 th:text="${'Price: ' + wish.getPrice()}"></h3>
             <p th:text="${wish.getDescription()}"></p>
             <div id="enkelt-ønske-højre-knapper">
-                <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} " th:method="get"><button>Edit</button>
+                <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} " th:method="get"><button>Edit Wish</button>
                 </form>
                 <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}} " th:method="post"><button>Delete</button>
                     <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
