@@ -39,6 +39,9 @@
         <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
         <button th:if="${owner}">Slet</button>
         </form>
+        <form th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
+        <button>Edit Wish</button>
+    </form>
     </div>
     <div id="ønskeliste-sektion">
 
