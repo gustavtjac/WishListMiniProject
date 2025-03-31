@@ -39,9 +39,11 @@
 
         <a th:href="@{'/wishlist/' + ${liste.getId()}}" th:each="liste : ${ønskelister}" class="ønskeliste-kort">
             <div class="ønskeliste-kort-indhold">
-                <a th:href="@{'/edit/wishlist/'+ ${liste.getId()}}"><button>Edit Wish</button></a>
             <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
             <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Wishes'}"></p>
+                <form th:action="@{'/edit/wishlist/'+ ${liste.getId()}}">
+                    <button>Edit Wish</button>
+                </form>
             </div>
         </a>
 
