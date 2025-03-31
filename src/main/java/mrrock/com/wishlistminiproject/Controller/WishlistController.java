@@ -194,6 +194,16 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
 
         return "redirect:/overview";
     }
+@PostMapping("/editwish")
+    public String editWishRequest(Model model, HttpSession session,@ModelAttribute Wish wish){
+    System.out.println(wish);
+    if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wish.getId())){
+        userService.updateWishFromID(wish);
+        }
+
+    return "redirect:/wishlist/" + wish.getWishlistID();
+}
+
 
 
 

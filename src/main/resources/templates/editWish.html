@@ -21,7 +21,7 @@
 </header>
 <main>
   <div class="create-new-wish-layout">
-    <p>Create new Wish</p>
+    <p>Edit Wish</p>
     <p th:text="${error}"></p>
     <form class="formBox" th:action="@{/editwish}" th:method="post">
       <label for="name"><b>Wish name</b></label>
@@ -34,12 +34,15 @@
       <textarea placeholder="Enter Description" name="description" required th:text="${wish.getDescription()}" id="description"></textarea>
 
       <label for="wishURL"><b>Wish link</b></label>
-      <input type="text" placeholder="Enter Wish URL" name="wishURL" th:value="${wish.getWishURL()}" id="wishURL">
+      <input type="url" placeholder="Enter Wish URL" name="wishURL" th:value="${wish.getWishURL()}" id="wishURL">
 
       <label for="imgURL"><b>Image link</b></label>
-      <input type="text" placeholder="Enter Image URL" name="imgURL" th:value="${wish.getImgURL()}" id="imgURL">
+      <input type="url" placeholder="Enter Image URL" name="imgURL" th:value="${wish.getImgURL()}" id="imgURL">
 
       <input type="hidden" name="wishlistID" th:value="${wish.getWishlistID()}" required id="wishlistID">
+
+      <input type="hidden" name="id" th:value="${wish.getId()}" required id="wishID">
+
 
       <button class="align-center-button" type="submit">Edit wish!</button>
     </form>

@@ -69,4 +69,17 @@ public class Wish {
     public void setWishURL(String wishURL) {
         this.wishURL = wishURL;
     }
+
+    @Override
+    public String toString() {
+        return "Wish{" +
+                "id=" + id +
+                ", wishlistID=" + wishlistID +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imgURL='" + imgURL + '\'' +
+                ", price=" + price +
+                ", wishURL='" + wishURL + '\'' +
+                '}';
+    }
 }

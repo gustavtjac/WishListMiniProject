@@ -75,5 +75,7 @@ public class UserService {
         return userRepository.deleteWishFromID(WishID);
     }
 
-
+public Wish updateWishFromID(Wish wish){
+        return userRepository.updateWishFromID(wish);
+}
 }
