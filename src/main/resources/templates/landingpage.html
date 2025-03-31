@@ -23,7 +23,7 @@
                 <div class="nav-buttons">
                     <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
                     <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
-                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{/overview}">Go to Wishes!</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${user.getUsername()}}">Go to Wishes!</a></button>
                     <form th:action="@{/logoff}" method="post">
                         <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
                     </form>

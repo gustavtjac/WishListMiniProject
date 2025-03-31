@@ -82,5 +82,8 @@ public Wishlist updateWishListFromID(Wishlist wishlist){
     return userRepository.updateWishListFromID(wishlist);
 }
 
+public User getUserFromUsername(String username){
+       return userRepository.getUserFromUsername(username);
+}
 
 }

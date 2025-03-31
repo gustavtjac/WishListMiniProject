@@ -39,13 +39,13 @@
         <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
         <button th:if="${owner}">Slet</button>
         </form>
-        <form th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
-        <button>Edit Wish</button>
+        <form  th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
+        <button th:if="${owner}" >Edit Wish</button>
     </form>
     </div>
     <div id="ønskeliste-sektion">
 
-        <a th:href="@{'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
+        <a th:href="@{'/'+${user.getUsername()}+'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
             <div class="ønskeliste-kort-indhold">
                 <img class="wish-image" th:src="${liste.getImgURL()}" alt="image">
                 <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
