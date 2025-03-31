@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @Repository
@@ -132,5 +131,21 @@ for (Wishlist wishlist : jdbcTemplate.query(sqlGetLists,new WishlistRowMapper(),
 
 return false;
     }
+
+    public boolean deleteWishlist(int wishlistID){
+        String wishSql= "DELETE FROM wish WHERE WISH_WISHLIST_ID = ?";
+        int rowsaffectedWish = jdbcTemplate.update(wishSql, wishlistID);
+
+        if (rowsaffectedWish >0){
+            String sql = "DELETE FROM wishlist WHERE WISHLIST_ID = ?";
+            int rowsaffectedWishlist = jdbcTemplate.update(sql, wishlistID);
+
+            if(rowsaffectedWishlist >0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

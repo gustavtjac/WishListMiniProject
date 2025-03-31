@@ -323,3 +323,28 @@ background-color: #8ecae6;
      align-items: center;
      justify-content: center;
  }
+
+#ønske-holder{
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+    border-radius: 11%;
+    background-color: #e1e1e1;
+}
+#enkelt-ønske-venstre{
+    margin: 50px;
+    border-radius: 11%;
+
+
+}
+#enkelt-ønske-højre{
+margin: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: start;
+    padding: 60px;
+    border-radius: 10px;
+width: 700px;
+    background-color: beige;
+}
