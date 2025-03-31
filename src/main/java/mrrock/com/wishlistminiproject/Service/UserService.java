@@ -78,4 +78,9 @@ public class UserService {
 public Wish updateWishFromID(Wish wish){
         return userRepository.updateWishFromID(wish);
 }
+public Wishlist updateWishListFromID(Wishlist wishlist){
+    return userRepository.updateWishListFromID(wishlist);
+}
+
+
 }

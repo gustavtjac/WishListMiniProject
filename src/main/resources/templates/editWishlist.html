@@ -21,15 +21,15 @@
 </header>
 <main>
     <div class="create-new-wish-layout">
-        <p>Create new Wishlist</p>
+        <p>Edit Wishlist</p>
         <p th:text="${error}"></p>
-        <form class="formBox" th:action="@{/createnewlist}" th:method="post" >
+        <form class="formBox" th:action="@{/editwishlist}" th:method="post" >
             <label for="name"><b>Wishlist name</b></label>
-            <input type="text" placeholder="Enter Wishlist name" name="name" required id="name">
-            <label for="userID"></label>
-            <input type="hidden" name="userID" required id="userID" th:value="${user.getId()}">
+            <input type="text" placeholder="Enter Wishlist name" name="name" th:value="${wishlist.getName()}" required id="name">
+            <input type="hidden" th:name="id" th:value="${wishlist.getId()}">
+            <input type="hidden" th:name="userID" th:value="${wishlist.getUserID()}">
 
-            <button type="submit">Create wishlist!</button>
+            <button type="submit">Edit wishlist!</button>
         </form>
     </div>
 </main>

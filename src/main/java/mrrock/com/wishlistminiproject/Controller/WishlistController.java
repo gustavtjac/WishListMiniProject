@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.lang.ref.ReferenceQueue;
+
 
 @Controller()
 public class WishlistController {
@@ -180,8 +182,24 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
     @GetMapping("/edit/wishlist/{wishListID}")
     public String editWishListPage(Model model, HttpSession session, @PathVariable int wishListID){
         if (userService.checkIfUserOwnList(wishListID,(User) session.getAttribute("user"))){
+            model.addAttribute("wishlist",userService.getWishlistFromID(wishListID));
             return "editWishlist";
         }
+        return "redirect:/overview";
+    }
+
+    @PostMapping("/editwishlist")
+    public String editWishListRequest(HttpSession session, @RequestParam String name, @RequestParam int userID,@RequestParam int id){
+
+        Wishlist wishlist = new Wishlist();
+        wishlist.setName(name);
+        wishlist.setUserID(userID);
+        wishlist.setId(id);
+        System.out.println(wishlist);
+        if (userService.checkIfUserOwnList(wishlist.getId(),(User) session.getAttribute("user"))){
+            userService.updateWishListFromID(wishlist);
+        }
+
         return "redirect:/overview";
     }
 
@@ -196,7 +214,6 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
     }
 @PostMapping("/editwish")
     public String editWishRequest(Model model, HttpSession session,@ModelAttribute Wish wish){
-    System.out.println(wish);
     if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wish.getId())){
         userService.updateWishFromID(wish);
         }
