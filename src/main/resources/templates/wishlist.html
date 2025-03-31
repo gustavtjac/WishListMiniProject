@@ -33,7 +33,7 @@
 </header>
 <main>
     <div id="overview-welcome-text">
-        <h1 th:if="${wish.size()==0}" th:text="${wishlist.getName()} + ' is empty :)'"></h1>
+        <h1 th:if="${wish.isEmpty()}" th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
         <h1 th:if="${wish.size()>0}" th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
 
         <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">

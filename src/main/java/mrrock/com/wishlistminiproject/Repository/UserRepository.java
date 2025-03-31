@@ -155,5 +155,16 @@ return false;
         return false;
     }
 
+    public Wish updateWishFromID(Wish wish) {
+        String sql = "UPDATE WISH SET WISH_NAME = ?, WISH_DESC = ?, WISH_IMGURL =?, WISH_URL=?,WISH_PRICE =? where WISH_ID = ?";
+        jdbcTemplate.update(sql, wish.getName(), wish.getDescription(), wish.getImgURL(), wish.getWishURL(), wish.getPrice(), wish.getId());
+        return wish;
+    }
 
+
+    public Wishlist updateWishListFromID(Wishlist wishlist){
+        String sql = "UPDATE WISHLIST SET WISHLIST_NAME = ? where wishlist_ID = ?";
+        jdbcTemplate.update(sql,wishlist.getName() ,wishlist.getId());
+        return wishlist;
+    }
 }

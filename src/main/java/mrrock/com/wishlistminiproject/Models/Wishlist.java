@@ -42,4 +42,14 @@ public class Wishlist {
     public void setWishList(List<Wish> wishList) {
         this.wishList = wishList;
     }
+
+    @Override
+    public String   toString() {
+        return "Wishlist{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", userID=" + userID +
+                ", wishList=" + wishList +
+                '}';
+    }
 }
