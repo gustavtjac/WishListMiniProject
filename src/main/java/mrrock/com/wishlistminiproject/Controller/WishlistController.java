@@ -78,6 +78,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         if (session.getAttribute("user")==null){
             return "redirect:/login";
         }
+
         model.addAttribute("user",session.getAttribute("user"));
         model.addAttribute("ønskelister",userService.getAllwishListsFromUserID(((User) session.getAttribute("user")).getId()));
         return "overview";
@@ -94,6 +95,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
         if (session.getAttribute("user")==null){
             return "redirect:/login";
         }
+
         model.addAttribute("error",error);
         model.addAttribute("user",(User) session.getAttribute("user"));
         return "newWishlist";
@@ -117,7 +119,7 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
             model.addAttribute("owner",true);
         }
 
-
+        model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
         model.addAttribute("user",(User) session.getAttribute("user"));
         model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
         model.addAttribute("wishlist", userService.getWishlistFromID(id));
@@ -147,15 +149,11 @@ redirectAttributes.addAttribute("error","Invalid Username or Password, try again
     @GetMapping("wishlist/{wishlistID}/wish/{wishID}")
     public String viewWishPage(@PathVariable int wishID,HttpSession session,Model model){
 
-
+model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
-
-
-
-
-
         model.addAttribute("user",(User) session.getAttribute("user"));
         model.addAttribute("wish",userService.getWishFromID(wishID));
+        model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
         return "wish";
     }
 

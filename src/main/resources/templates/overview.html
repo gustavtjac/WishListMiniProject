@@ -17,9 +17,11 @@
             <div class="nav-content">
                 <a th:href="@{/about}">About</a>
                 <a th:href="@{/contact}">Contact</a>
+                <a th:href="@{/createnewlist}">+</a>
                 <div class="nav-user-button"></div>
 
                 <div class="nav-buttons">
+
                     <form th:action="@{/logoff}" method="post">
                         <button data-role="logoff" type="submit"> <a>Sign Out</a> </button>
                     </form>
