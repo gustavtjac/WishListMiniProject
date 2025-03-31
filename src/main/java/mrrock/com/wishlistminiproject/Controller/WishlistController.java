@@ -160,12 +160,22 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
 
 
     @PostMapping("wishlist/delete/{wishlistID}")
-    public String deleteWishlist(int wishlistID){
-        userService.deleteWishlist(wishlistID);
+    public String deleteWishlist(@PathVariable int wishlistID, HttpSession session){
+        if (userService.checkIfUserOwnList(wishlistID,(User) session.getAttribute("user"))){
+            userService.deleteWishlist(wishlistID);
+        }
         return "redirect:/overview";
     }
 
 
+    @PostMapping("/delete/{wishID}")
+    public String deleteWish(@PathVariable int wishID, HttpSession session, @RequestParam int wishListID){
+        if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
+            userService.deleteWishFromID(wishID);
+        }
+
+        return "redirect:/wishlist/" + wishListID;
+    }
 
 
 }
