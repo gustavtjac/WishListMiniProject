@@ -35,6 +35,10 @@
     <div id="overview-welcome-text">
         <h1 th:if="${wish.size()==0}" th:text="${wishlist.getName()} + ' is empty :)'"></h1>
         <h1 th:if="${wish.size()>0}" th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
+
+        <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
+        <button th:if="${owner}">Slet</button>
+        </form>
     </div>
     <div id="ønskeliste-sektion">
 

@@ -69,4 +69,11 @@ public class UserService {
     public boolean deleteWishlist(int WishlistID){
         return userRepository.deleteWishlist(WishlistID);
     }
+
+
+    public boolean deleteWishFromID(int WishID){
+        return userRepository.deleteWishFromID(WishID);
+    }
+
+
 }

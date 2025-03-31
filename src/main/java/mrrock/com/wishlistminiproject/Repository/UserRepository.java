@@ -134,15 +134,23 @@ return false;
 
     public boolean deleteWishlist(int wishlistID){
         String wishSql= "DELETE FROM wish WHERE WISH_WISHLIST_ID = ?";
-        int rowsaffectedWish = jdbcTemplate.update(wishSql, wishlistID);
-
-        if (rowsaffectedWish >0){
+         jdbcTemplate.update(wishSql, wishlistID);
             String sql = "DELETE FROM wishlist WHERE WISHLIST_ID = ?";
             int rowsaffectedWishlist = jdbcTemplate.update(sql, wishlistID);
 
             if(rowsaffectedWishlist >0) {
                 return true;
             }
+        return false;
+    }
+
+
+    public boolean deleteWishFromID(int wishID){
+        String wishSql= "DELETE FROM wish WHERE WISH_ID = ?";
+        int rowsaffectedWish = jdbcTemplate.update(wishSql, wishID);
+
+        if(rowsaffectedWish >0) {
+            return true;
         }
         return false;
     }

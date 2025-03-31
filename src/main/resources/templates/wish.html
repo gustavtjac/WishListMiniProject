@@ -43,7 +43,10 @@
             <p th:text="${wish.getDescription()}"></p>
             <div id="enkelt-ønske-højre-knapper">
                 <a th:if="${owner}" th:href="@{/}"><button>Edit</button></a>
-                <a th:if="${owner}" th:href="@{/}"><button>Delete</button></a>
+                <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}} " th:method="post"><button>Delete</button>
+                    <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
+                </form>
+
                 <a th:if="${!owner}" th:href="@{/}"><button>Reserve</button></a>
                 <a th:if="${!owner}" th:href="@{/}"><button>Visit site</button></a>
             </div>
