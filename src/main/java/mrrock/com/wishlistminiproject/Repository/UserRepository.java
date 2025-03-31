@@ -167,4 +167,13 @@ return false;
         jdbcTemplate.update(sql,wishlist.getName() ,wishlist.getId());
         return wishlist;
     }
+
+    public User getUserFromUsername(String username){
+        String sql = "Select * from user where user_username = ?";
+        List<User> userList = jdbcTemplate.query(sql,new UserRowMapper(),username);
+        if (!userList.isEmpty()){
+            return userList.getFirst();
+        }
+        return null;
+    }
 }

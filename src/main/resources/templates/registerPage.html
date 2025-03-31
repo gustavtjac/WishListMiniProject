@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,6 +37,7 @@
                 <input type="password" placeholder="Enter Password" name="password" required id="password">
 
                 <button type="submit">Register</button>
+                <button><a th:href="@{/login}">Go to login</a></button>
             </form>
         </div>
     </article>

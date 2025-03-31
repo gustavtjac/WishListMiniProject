@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta charset="UTF-8">
@@ -22,7 +23,7 @@
                     <a th:if="${owner}"  th:href="@{'/'+ ${wishlist.getId()}+  '/createnewwish'}">+</a>
                     <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
                     <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
-                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{/overview}">Go to Wishes!</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${loggedInUser.getUsername()}}">Go to Wishes!</a></button>
                     <form th:action="@{/logoff}" method="post">
                         <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
                     </form>
@@ -39,10 +40,13 @@
         <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
         <button th:if="${owner}">Slet</button>
         </form>
+        <form  th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
+        <button th:if="${owner}" >Edit Wishlist</button>
+    </form>
     </div>
     <div id="ønskeliste-sektion">
 
-        <a th:href="@{'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
+        <a th:href="@{'/'+${user.getUsername()}+'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
             <div class="ønskeliste-kort-indhold">
                 <img class="wish-image" th:src="${liste.getImgURL()}" alt="image">
                 <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
