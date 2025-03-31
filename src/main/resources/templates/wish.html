@@ -1,24 +1,61 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Ønske</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishhub</title>
 </head>
 <body>
+
 <header>
     <nav class="navbar">
-        <div class="navdiv">
-            <div class="logo"><a th:href="@{/}">Wishhub</a></div>
-            <ul>
-                <p th:text="${owner}"></p>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li>
-                    <form th:action="@{/logoff}" method="post"><button type="submit">Log off</button></form></li>
-            </ul>
+        <div class="nav-container">
+            <div class="logo">
+                <a th:href="@{/}">Wishhub</a>
+            </div>
+
+            <div class="nav-content">
+                <a th:href="@{/about}">About</a>
+                <a th:href="@{/contact}">Contact</a>
+
+                <div class="nav-buttons">
+                    <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
+                    <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{/overview}">Go to Wishes!</a></button>
+                    <form th:action="@{/logoff}" method="post">
+                        <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </nav>
 </header>
+
+<main>
+    <div id="ønske-holder">
+        <div id="enkelt-ønske-venstre">
+            <img th:src="${wish.getWishURL()}"  alt="WishIMG">
+        </div>
+        <div id="enkelt-ønske-højre">
+            <h2 th:text="${wish.getName()}"></h2>
+            <h3 th:text="${'Price: ' + wish.getPrice()}"></h3>
+            <p th:text="${wish.getDescription()}"></p>
+            <div id="enkelt-ønske-højre-knapper">
+                <a th:if="${owner}" th:href="@{/}"><button>Edit</button></a>
+                <a th:if="${owner}" th:href="@{/}"><button>Delete</button></a>
+                <a th:if="${!owner}" th:href="@{/}"><button>Reserve</button></a>
+                <a th:if="${!owner}" th:href="@{/}"><button>Visit site</button></a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</main>
 
 </body>
 </html>
