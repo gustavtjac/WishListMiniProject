@@ -41,7 +41,6 @@ public class UserService {
         return userRepository.getWishFromWishlistID(id);
     }
 
-
     public User registerNewUser(String username,String password,String name){
       return userRepository.registerNewUser(username,password,name);
     }
@@ -54,7 +53,6 @@ public class UserService {
         return userRepository.getWishlistFromID(id);
     }
 
-
     public boolean checkIfUserOwnList(int listId,User user){
         return userRepository.checkIfUserOwnList(listId,user);
     }
@@ -64,9 +62,11 @@ public class UserService {
         return userRepository.getWishFromID(wishID);
     }
 
-
-
     public boolean checkIfUserOwnsWish(User user, int wishID){
         return userRepository.checkIfUserOwnWish(user,wishID);
+    }
+
+    public boolean deleteWishlist(int WishlistID){
+        return userRepository.deleteWishlist(WishlistID);
     }
 }

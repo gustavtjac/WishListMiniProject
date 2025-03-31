@@ -160,6 +160,12 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
     }
 
 
+    @PostMapping("wishlist/delete/{wishlistID}")
+    public String deleteWishlist(int wishlistID){
+        userService.deleteWishlist(wishlistID);
+        return "redirect:/overview";
+    }
+
 
 
 
