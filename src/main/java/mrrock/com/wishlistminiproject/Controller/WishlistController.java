@@ -177,5 +177,24 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
         return "redirect:/wishlist/" + wishListID;
     }
 
+    @GetMapping("/edit/wishlist/{wishListID}")
+    public String editWishListPage(Model model, HttpSession session, @PathVariable int wishListID){
+        if (userService.checkIfUserOwnList(wishListID,(User) session.getAttribute("user"))){
+            return "editWishlist";
+        }
+        return "redirect:/overview";
+    }
+
+    @GetMapping("/edit/wish/{wishID}")
+    public String editWishPage(Model model, HttpSession session, @PathVariable int wishID){
+        if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
+            model.addAttribute("wish",userService.getWishFromID(wishID));
+            return "editWish";
+        }
+
+        return "redirect:/overview";
+    }
+
+
 
 }
