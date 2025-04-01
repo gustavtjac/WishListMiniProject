@@ -12,7 +12,7 @@
 <header>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo"><a th:href="@{/}">Wishhub</a></div>
+            <div class="logo"><a th:href="@{/}">WishHub</a></div>
             <div class="nav-content">
                 <a th:href="@{/about}">About</a>
                 <a th:href="@{/contact}">Contact</a>
@@ -22,10 +22,11 @@
 </header>
 
 <main>
-    <article>
-        <h2>Create an account on Wishhub</h2>
+    <article class="login-page">
+
         <p id="errorText" th:text="${error}"></p>
         <div class="formBox">
+            <h2>Create WishHub Account</h2>
             <form th:action="@{/register}" th:method="post">
                 <label for="name"><b>Name</b></label>
                 <input type="text" placeholder="Enter Name" name="name" required id="name">
@@ -36,8 +37,11 @@
                 <label for="password"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required id="password">
 
-                <button type="submit">Register</button>
-                <button><a th:href="@{/login}">Go to login</a></button>
+                <div class="create-account-buttons">
+                    <button data-role="create" type="submit"><a>Create Account</a></button>
+                    <button data-role="login"><a th:href="@{/login}">Go to login</a></button>
+                </div>
+
             </form>
         </div>
     </article>
