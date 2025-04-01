@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="icon" type="image/x-icon" href="/images/logo for frontsite.jpg">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/frontsite-logo.jpg}">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta charset="UTF-8">
@@ -12,7 +12,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <a th:href="@{/}">Wishhub</a>
+                <a th:href="@{/}">WishHub</a>
             </div>
 
             <div class="nav-content">

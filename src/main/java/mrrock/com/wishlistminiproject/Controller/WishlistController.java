@@ -187,6 +187,7 @@ if ((User)session.getAttribute("user")!=null){
 
 model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
+model.addAttribute("ownerUsername",username);
         model.addAttribute("user",(User) session.getAttribute("user"));
         model.addAttribute("wish",userService.getWishFromID(wishID));
         model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
@@ -263,6 +264,15 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
         }
 
     return "redirect:/"+((User) session.getAttribute("user")).getUsername()+"/wishlist/" + wish.getWishlistID();
+}
+
+@PostMapping("/reservewish")
+    public String reserveWishRequest(HttpSession session, @RequestParam int wishID, @RequestParam String usernameFromOwner){
+        if ((User) session.getAttribute("user")!=null&& !userService.getWishFromID(wishID).isReserved()){
+            userService.reserveWishFromId(wishID);
+            return "redirect:/"+usernameFromOwner+"/wishlist/" + userService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
+        }
+    return "redirect:/"+usernameFromOwner+"/wishlist/" + userService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
 }
 
 

@@ -10,8 +10,17 @@ public class Wish {
     private String imgURL;
     private double price;
     private String wishURL;
+    private boolean reserved;
 
     public Wish() {
+    }
+
+    public boolean isReserved() {
+        return reserved;
+    }
+
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
     }
 
     public int getId() {
