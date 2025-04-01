@@ -42,7 +42,6 @@ private UserService userService;
             model.addAttribute("loggedIn",true);
             model.addAttribute("user",(User) session.getAttribute("user"));
         }
-
         return "about";
     }
 
@@ -54,7 +53,6 @@ private UserService userService;
             model.addAttribute("loggedIn",true);
             model.addAttribute("user",(User) session.getAttribute("user"));
         }
-
         return "contact";
     }
 
