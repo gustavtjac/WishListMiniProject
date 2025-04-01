@@ -169,7 +169,6 @@ return false;
     }
 
     public User getUserFromUsername(String username){
-        System.out.println(username);
         String sql = "Select * from user where user_username = ?";
         List<User> userList = jdbcTemplate.query(sql,new UserRowMapper(),username);
         if (!userList.isEmpty()){

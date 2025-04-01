@@ -42,7 +42,7 @@
             <h2 th:text="${wish.getName()}"></h2>
             <h3 th:text="${'Price: ' + wish.getPrice()}"></h3>
             <p th:text="${wish.getDescription()}"></p>
-            <p th:if="${wish.isReserved()}">Ønsket er reserveret</p>
+            <p th:if="${wish.isReserved() && !owner}">Wish has been reserved!</p>
             <div id="enkelt-ønske-højre-knapper">
                 <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} " th:method="get"><button>Edit Wish</button>
                 </form>

@@ -236,7 +236,6 @@ model.addAttribute("ownerUsername",username);
         wishlist.setName(name);
         wishlist.setUserID(userID);
         wishlist.setId(id);
-        System.out.println(wishlist);
         if (userService.checkIfUserOwnList(wishlist.getId(),(User) session.getAttribute("user"))){
             userService.updateWishListFromID(wishlist);
         }
