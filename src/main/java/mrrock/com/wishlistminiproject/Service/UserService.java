@@ -86,4 +86,8 @@ public User getUserFromUsername(String username){
        return userRepository.getUserFromUsername(username);
 }
 
+public Wish reserveWishFromId(int wishID){
+      return userRepository.reserveWishFromId(wishID);
+}
+
 }

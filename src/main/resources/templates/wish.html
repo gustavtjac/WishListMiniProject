@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="icon" type="image/x-icon" href="/images/logo for frontsite.jpg">
+    <link rel="icon" type="image/x-icon" th:href="@{/images/frontsite-logo.jpg}">
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,14 +42,19 @@
             <h2 th:text="${wish.getName()}"></h2>
             <h3 th:text="${'Price: ' + wish.getPrice()}"></h3>
             <p th:text="${wish.getDescription()}"></p>
+            <p th:if="${wish.isReserved()}">Ønsket er reserveret</p>
             <div id="enkelt-ønske-højre-knapper">
                 <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} " th:method="get"><button>Edit Wish</button>
                 </form>
                 <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}} " th:method="post"><button>Delete</button>
                     <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
                 </form>
+                <form th:action="@{/reservewish}" th:method="post">
+                    <input type="hidden" th:value="${ownerUsername}"  th:name="usernameFromOwner">
+                    <input type="hidden" th:value="${wish.getId()}" name="wishID">
+                    <button th:if="${!owner && loggedIn && wish.isReserved()==false}">Reserve</button>
+                </form>
 
-                <a th:if="${!owner}" th:href="@{/}"><button>Reserve</button></a>
                 <a th:if="${!owner}" th:href="@{/}"><button>Visit site</button></a>
             </div>
         </div>

@@ -169,10 +169,20 @@ return false;
     }
 
     public User getUserFromUsername(String username){
+        System.out.println(username);
         String sql = "Select * from user where user_username = ?";
         List<User> userList = jdbcTemplate.query(sql,new UserRowMapper(),username);
         if (!userList.isEmpty()){
             return userList.getFirst();
+        }
+        return null;
+    }
+
+    public Wish reserveWishFromId(int wishID){
+        String sql = "UPDATE WISH SET WISH_RESERVED = 1 where WISH_ID = ?";
+        int rowsAffected = jdbcTemplate.update(sql,wishID);
+        if (rowsAffected>0){
+            return getWishFromID(wishID);
         }
         return null;
     }
