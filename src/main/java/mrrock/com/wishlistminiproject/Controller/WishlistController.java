@@ -46,6 +46,18 @@ private UserService userService;
         return "about";
     }
 
+    @GetMapping("/contact")
+    public String contactPage(Model model, HttpSession session){
+
+        model.addAttribute("loggedIn",false);
+        if(session.getAttribute("user") !=null){
+            model.addAttribute("loggedIn",true);
+            model.addAttribute("user",(User) session.getAttribute("user"));
+        }
+
+        return "contact";
+    }
+
     //endpoint til at kunne tilgå loginsiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)
     @GetMapping("/login")
     public String loginPage(HttpSession session,Model model,@RequestParam(value = "error", required = false) String error) {
