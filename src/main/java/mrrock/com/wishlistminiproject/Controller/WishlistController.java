@@ -21,6 +21,7 @@ public class WishlistController {
 
     @Autowired
 private UserService userService;
+
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
     public String landingPage(HttpSession session,Model model) {
@@ -31,6 +32,18 @@ private UserService userService;
         }
         model.addAttribute("loggedIn",false);
         return "landingpage";
+    }
+
+    @GetMapping("/about")
+    public String aboutPage(Model model, HttpSession session){
+
+        model.addAttribute("loggedIn",false);
+        if(session.getAttribute("user") !=null){
+            model.addAttribute("loggedIn",true);
+            model.addAttribute("user",(User) session.getAttribute("user"));
+        }
+
+        return "about";
     }
 
     //endpoint til at kunne tilgå loginsiden, Hvis man allerede er logget ind bliver du smidt hen til overview siden ;)

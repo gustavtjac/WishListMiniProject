@@ -1,11 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
+    <link rel="icon" type="image/x-icon" href="/images/logo for frontsite.jpg">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishhub</title>
 </head>
 <body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a th:href="@{/}">Wishhub</a>
+            </div>
+
+            <div class="nav-content">
+                <a th:href="@{/about}">About</a>
+                <a th:href="@{/contact}">Contact</a>
+                <div class="nav-user-button"></div>
+
+                <div class="nav-buttons">
+                    <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
+                    <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${user.getUsername()}}">Go to Wishes!</a></button>
+                    <form th:action="@{/logoff}" method="post">
+                        <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <article id="forside-main-indhold">
+        <div class="forside-element">
+            <img style="width: 100%; height: 400px" src="images/team.jpg"  alt="Billede af kat">
+        </div>
+
+        <div id="main-indhold-tekst" class="forside-element">
+            <h2>🌿 About WishHub 🌍</h2>
+            <p>At WishHub, we believe that every wish deserves to come true—but not at the cost of our planet! 💚 Based in Denmark, our small but passionate team is on a mission to reduce CO₂ emissions by helping people buy less and buy smarter. Instead of promoting mindless shopping, we encourage conscious choices that are better for you and the environment. 🌎✨
+
+                We know that true happiness isn’t about having more stuff—it’s about getting what truly matters. That’s why we help you focus on the things you actually need while making eco-friendly choices easier. By rethinking the way we consume, cutting down on waste, and making sustainability simple, we're proving that less is more.
+
+                Wish for something meaningful, and we’ll help make it happen. 💫♻️
+
+                Your wishes, our hub—welcome to WishHub! 🚀</p>
+        </div>
+    </article>
+
+
+
+</main>
+
+<footer class="foot">
+    <p>Disclaimer: Vi sørger ikke for at du får dine gaver det er ikke vores problem det er et dig problem.</p>
+</footer>
 
 </body>
 </html>
