@@ -118,23 +118,25 @@ li {
 }
 
 
-
-
-
-
-
-
+.login-page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: 100px 500px;
+    height: 650px;
+    padding: 0px;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+}
 
 
 .formBox {
-    width: 500px;
-    padding: 50px;
+    width: 550px;
+    padding: 5px 50px;
     margin: 20px;
-    border-color: #8ecae6;
-    border-width: 15px;
-    border-style: solid;
-    border-radius: 5%;
+    border: none;
 }
+
 
 .formBox input, .formBox textarea {
     width: 100%;
@@ -142,19 +144,91 @@ li {
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+
 }
 .formBox label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    font-size: 20px;
 }
-.formBox button {
+
+.login-page-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+.login-page-buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 130px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: color 0.3s;
+}
+.login-page-buttons button[data-role="register"] {
+    background-color: #00aaff;
+    width: 200px;
+}
+
+.login-page-buttons button[data-role="login"] {
+    background-color: #00689C;
+    color: white;
+    width: 200px;
+}
+.login-page-buttons a {
+    transition: color 0.3s;
+    color: white;
+}
+.login-page-buttons a:hover {
+    color: black;
 }
 
 
-.formBox button:hover {
-    background-color: #0056b3;
+.create-account-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
 }
+.create-account-buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 130px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: color 0.3s;
+}
+.create-account-buttons button[data-role="create"] {
+    background-color: #00aaff;
+    width: 220px;
+}
+
+.create-account-buttons button[data-role="login"] {
+    background-color: #00689C;
+    color: white;
+    width: 200px;
+}
+.create-account-buttons a {
+    transition: color 0.3s;
+    color: white;
+}
+.create-account-buttons a:hover {
+    color: black;
+}
+
+
 
 
 
@@ -172,23 +246,24 @@ article {
 }
 
 article h2 {
-    margin-bottom: 20px;
-    color: #219ebc;
+    margin-bottom: 40px;
+    font-size: 40px;
+    color: black;
 }
 
 article img {
-    width: 400px;
+    width: 600px;
     height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.7);
 }
 
 article p {
-    font-size: 18px;
+    font-size: 24px;
     margin-top: 15px;
-    color: #555;
+    color: black;
 }
 
 footer {
@@ -199,7 +274,7 @@ footer {
     padding: 10px;
     text-align: center;
     background-color: #00c8ff;
-    color: white;
+    color: black;
 }
 
 input[type=text], input[type=password] {
@@ -214,27 +289,44 @@ input[type=text], input[type=password] {
     color: red;
     border-radius: 8%;
 }
+
+
+#main{
+    height: 500px;
+}
 #forside-main-indhold{
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-evenly;
     margin: 100px;
+    height: 650px;
+    padding: 0px;
     box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
 }
 #main-indhold-tekst{
-    max-width: 30%;
+    max-width: 40%;
 }
 .forside-element{
     margin: 50px;
 }
 #main-indhold-tekst-knap{
-    font-weight: bold;
-    margin-top: 40px;
-background-color: #8ecae6;
-    height: 40px;
-    width: 180px;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 400px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: color 0.3s;
+    margin: 20px;
+    background-color: #00aaff;
+    color: white;
 }
+#main-indhold-tekst-knap:hover {
+    color: black;
+}
+
 .ønskeliste-kort{
     color: black;
     margin: 43px;
