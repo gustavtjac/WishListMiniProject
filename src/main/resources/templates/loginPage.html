@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">
-                <a th:href="@{/}">Wishhub</a>
+                <a th:href="@{/}">WishHub</a>
             </div>
 
             <div class="nav-content">
@@ -25,8 +25,8 @@
 </header>
 
 <main>
-    <article>
-        <h2>Login to Wishhub</h2>
+    <article class="login-page">
+        <h2>Sign In to WishHub</h2>
         <p id="errorText" th:text="${error}"></p>
         <div class="formBox">
             <form th:action="@{/login}" th:method="post">
@@ -35,9 +35,11 @@
 
                 <label for="password"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" required id="password">
+                <div class="login-page-buttons">
+                    <button data-role="register"><a th:href="@{/register}">Register</a></button>
+                    <button data-role="login" type="submit"><a>Sign In</a></button>
+                </div>
 
-                <button type="submit">Login</button>
-                <button><a th:href="@{/register}">Register instead</a></button>
 
             </form>
         </div>
