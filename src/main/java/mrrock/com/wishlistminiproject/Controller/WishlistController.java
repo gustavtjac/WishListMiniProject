@@ -199,7 +199,10 @@ model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAtt
             model.addAttribute("owner",true);
             return "editWishlist";
         }
-        return "redirect:/overview";
+
+
+
+        return "redirect:/login";
     }
 
     @PostMapping("/editwishlist")
