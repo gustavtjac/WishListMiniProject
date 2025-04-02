@@ -52,7 +52,7 @@ return null;
         return jdbcTemplate.query(sql,new WishlistRowMapper(),id);
     }
 
-    public List<Wish> getWishFromWishlistID(int id){
+    public List<Wish> getWishFromWishlistID(String id){
         String sql = "Select * from wish where WISH_WISHLIST_ID = ?";
         return jdbcTemplate.query(sql,new WishRowMapper(),id);
     }
@@ -70,7 +70,7 @@ return null;
        return null;
     }
 
-    public Wishlist getWishlistFromID(int id) {
+    public Wishlist getWishlistFromID(String id) {
         String sql = "Select * from wishlist where WISHLIST_ID = ?";
 
        List<Wishlist> wishlists = jdbcTemplate.query(sql,new WishlistRowMapper(),id);
@@ -90,12 +90,12 @@ return null;
     }
 
 
-    public boolean checkIfUserOwnList(int listId, User user){
+    public boolean checkIfUserOwnList(String listId, User user){
         String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
         if (user != null){
             List<Wishlist> wishlistList = jdbcTemplate.query(sql,new WishlistRowMapper(),user.getId());
             for (Wishlist wishlist : wishlistList){
-                if (wishlist.getId() == listId){
+                if (wishlist.getId().equalsIgnoreCase(listId)){
                     return true;
                 }
             }
@@ -104,7 +104,7 @@ return null;
         return false;
     }
 
-    public Wish getWishFromID(int wishID){
+    public Wish getWishFromID(String wishID){
         String sql = "Select * from wish where WISH_ID = ?";
         List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
         if (!wishlist.isEmpty()){
@@ -113,7 +113,7 @@ return null;
         return null;
     }
 
-    public boolean checkIfUserOwnWish(User user, int wishID){
+    public boolean checkIfUserOwnWish(User user, String wishID){
         if (user==null){
             return false;
         }
@@ -124,7 +124,7 @@ String sqlGetWish = "Select * from wish where WISH_ID = ?";
 List<Wish> list = jdbcTemplate.query(sqlGetWish,new WishRowMapper(),wishID);
 
 for (Wishlist wishlist : jdbcTemplate.query(sqlGetLists,new WishlistRowMapper(),user.getId())){
-    if (wishlist.getId()==list.getFirst().getWishlistID()){
+    if (wishlist.getId().equalsIgnoreCase(list.getFirst().getWishlistID())){
         return true;
     }
 }
@@ -132,7 +132,7 @@ for (Wishlist wishlist : jdbcTemplate.query(sqlGetLists,new WishlistRowMapper(),
 return false;
     }
 
-    public boolean deleteWishlist(int wishlistID){
+    public boolean deleteWishlist(String wishlistID){
         String wishSql= "DELETE FROM wish WHERE WISH_WISHLIST_ID = ?";
          jdbcTemplate.update(wishSql, wishlistID);
             String sql = "DELETE FROM wishlist WHERE WISHLIST_ID = ?";
@@ -145,7 +145,7 @@ return false;
     }
 
 
-    public boolean deleteWishFromID(int wishID){
+    public boolean deleteWishFromID(String wishID){
         String wishSql= "DELETE FROM wish WHERE WISH_ID = ?";
         int rowsaffectedWish = jdbcTemplate.update(wishSql, wishID);
 
@@ -177,7 +177,7 @@ return false;
         return null;
     }
 
-    public Wish reserveWishFromId(int wishID){
+    public Wish reserveWishFromId(String wishID){
         String sql = "UPDATE WISH SET WISH_RESERVED = 1 where WISH_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql,wishID);
         if (rowsAffected>0){

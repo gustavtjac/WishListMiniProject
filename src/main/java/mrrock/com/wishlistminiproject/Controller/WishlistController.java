@@ -146,7 +146,7 @@ if ((User)session.getAttribute("user")!=null){
     }
 
     @GetMapping("/{username}/wishlist/{id}")
-    public String showWishList(HttpSession session, Model model, @PathVariable int id,@PathVariable String username) {
+    public String showWishList(HttpSession session, Model model, @PathVariable String id,@PathVariable String username) {
 
         model.addAttribute("owner",false);
         if (userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
@@ -161,7 +161,7 @@ if ((User)session.getAttribute("user")!=null){
     }
 
     @GetMapping("/{id}/createnewwish")
-    public String createNewWishSite(@PathVariable int id,HttpSession session,Model model, @RequestParam(value = "error", required = false) String error){
+    public String createNewWishSite(@PathVariable String id,HttpSession session,Model model, @RequestParam(value = "error", required = false) String error){
 
         if (session.getAttribute("user")==null|| !userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
             return "redirect:/login";
@@ -183,7 +183,7 @@ if ((User)session.getAttribute("user")!=null){
     }
 
     @GetMapping("/{username}/wishlist/{wishlistID}/wish/{wishID}")
-    public String viewWishPage(@PathVariable int wishID,HttpSession session,Model model,@PathVariable String username){
+    public String viewWishPage(@PathVariable String wishID,HttpSession session,Model model,@PathVariable String username){
 
 model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
@@ -196,7 +196,7 @@ model.addAttribute("ownerUsername",username);
 
 
     @PostMapping("wishlist/delete/{wishlistID}")
-    public String deleteWishlist(@PathVariable int wishlistID, HttpSession session){
+    public String deleteWishlist(@PathVariable String wishlistID, HttpSession session){
         if (userService.checkIfUserOwnList(wishlistID,(User) session.getAttribute("user"))){
             userService.deleteWishlist(wishlistID);
         }
@@ -205,7 +205,7 @@ model.addAttribute("ownerUsername",username);
 
 
     @PostMapping("/delete/{wishID}")
-    public String deleteWish(@PathVariable int wishID, HttpSession session, @RequestParam int wishListID){
+    public String deleteWish(@PathVariable String wishID, HttpSession session, @RequestParam String wishListID){
 
 
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
@@ -216,7 +216,7 @@ model.addAttribute("ownerUsername",username);
     }
 
     @GetMapping("/edit/wishlist/{wishListID}")
-    public String editWishListPage(Model model, HttpSession session, @PathVariable int wishListID){
+    public String editWishListPage(Model model, HttpSession session, @PathVariable String wishListID){
         model.addAttribute("loggedInUser",session.getAttribute("user"));
         if (userService.checkIfUserOwnList(wishListID,(User) session.getAttribute("user"))){
             model.addAttribute("wishlist",userService.getWishlistFromID(wishListID));
@@ -230,7 +230,7 @@ model.addAttribute("ownerUsername",username);
     }
 
     @PostMapping("/editwishlist")
-    public String editWishListRequest(HttpSession session, @RequestParam String name, @RequestParam int userID,@RequestParam int id){
+    public String editWishListRequest(HttpSession session, @RequestParam String name, @RequestParam int userID,@RequestParam String id){
 
         Wishlist wishlist = new Wishlist();
         wishlist.setName(name);
@@ -244,7 +244,7 @@ model.addAttribute("ownerUsername",username);
     }
 
     @GetMapping("/edit/wish/{wishID}")
-    public String editWishPage(Model model, HttpSession session, @PathVariable int wishID){
+    public String editWishPage(Model model, HttpSession session, @PathVariable String wishID){
 
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
             model.addAttribute("wish",userService.getWishFromID(wishID));
@@ -266,7 +266,7 @@ model.addAttribute("ownerUsername",username);
 }
 
 @PostMapping("/reservewish")
-    public String reserveWishRequest(HttpSession session, @RequestParam int wishID, @RequestParam String usernameFromOwner){
+    public String reserveWishRequest(HttpSession session, @RequestParam String wishID, @RequestParam String usernameFromOwner){
         if ((User) session.getAttribute("user")!=null&& !userService.getWishFromID(wishID).isReserved()){
             userService.reserveWishFromId(wishID);
             return "redirect:/"+usernameFromOwner+"/wishlist/" + userService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
