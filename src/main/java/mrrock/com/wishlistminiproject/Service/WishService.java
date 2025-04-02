@@ -16,7 +16,7 @@ public class WishService {
     }
 
     public Wish getWishFromID(String wishID){
-        return wishRepository.getWishFromID(wishID);
+        return wishRepository.findById(wishID);
     }
     public boolean deleteWishFromID(String WishID){
         return wishRepository.deleteWishFromID(WishID);

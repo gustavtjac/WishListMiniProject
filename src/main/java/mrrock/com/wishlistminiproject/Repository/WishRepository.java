@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishRepository {
+public class WishRepository implements CrudOperations<Wish,String>{
 
     private JdbcTemplate jdbcTemplate;
 
@@ -36,19 +36,11 @@ public class WishRepository {
         return null;
     }
 
-    public Wish getWishFromID(String wishID){
-        String sql = "Select * from wish where WISH_ID = ?";
-        List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
-        if (!wishlist.isEmpty()){
-            return wishlist.getFirst();
-        }
-        return null;
-    }
     public Wish reserveWishFromId(String wishID){
         String sql = "UPDATE WISH SET WISH_RESERVED = 1 where WISH_ID = ?";
         int rowsAffected = jdbcTemplate.update(sql,wishID);
         if (rowsAffected>0){
-            return getWishFromID(wishID);
+            return findById(wishID);
         }
         return null;
     }
@@ -67,6 +59,16 @@ public class WishRepository {
         String sql = "UPDATE WISH SET WISH_NAME = ?, WISH_DESC = ?, WISH_IMGURL =?, WISH_URL=?,WISH_PRICE =? where WISH_ID = ?";
         jdbcTemplate.update(sql, wish.getName(), wish.getDescription(), wish.getImgURL(), wish.getWishURL(), wish.getPrice(), wish.getId());
         return wish;
+    }
+
+    @Override
+    public Wish findById(String wishID) {
+        String sql = "Select * from wish where WISH_ID = ?";
+        List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
+        if (!wishlist.isEmpty()){
+            return wishlist.getFirst();
+        }
+        return null;
     }
 }
 
