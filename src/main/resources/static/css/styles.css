@@ -383,7 +383,7 @@ input[type=text], input[type=password] {
 #overview-welcome-text{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 50px;
 }
 
@@ -439,4 +439,40 @@ margin: 50px;
     border-radius: 10px;
 width: 700px;
     background-color: beige;
+}
+.button-43 {
+    background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
+    border-radius: .5rem;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    padding: 1rem 1.75rem;
+    text-decoration: none;
+    width: 10%;
+    border: 0;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-43:hover {
+    background-image: linear-gradient(-180deg, #1D95C9 0%, #17759C 100%);
+}
+
+@media (min-width: 768px) {
+    .button-43 {
+        padding: 1rem 2rem;
+    }
+}
+#single-ønske-knappe-holder{
+    margin: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+#single-ønske-knappe-holder form {
+    width: 100px;
+    height: 800px;
 }
