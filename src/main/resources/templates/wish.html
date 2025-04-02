@@ -34,6 +34,10 @@
 </header>
 
 <main>
+    <div id="single-ønske-knappe-holder">
+        <a th:href="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}"><button class="button-43"><-- Go back</button></a>
+    </div>
+
     <div id="ønske-holder">
         <div id="enkelt-ønske-venstre">
             <img th:src="${wish.getWishURL()}"  alt="WishIMG">
