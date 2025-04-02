@@ -3,8 +3,8 @@ package mrrock.com.wishlistminiproject.Models;
 import java.util.List;
 
 public class Wish {
-    private int id;
-    private int wishlistID;
+    private String id;
+    private String wishlistID;
     private String name;
     private String description;
     private String imgURL;
@@ -23,19 +23,19 @@ public class Wish {
         this.reserved = reserved;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getWishlistID() {
+    public String getWishlistID() {
         return wishlistID;
     }
 
-    public void setWishlistID(int wishlistID) {
+    public void setWishlistID(String wishlistID) {
         this.wishlistID = wishlistID;
     }
 

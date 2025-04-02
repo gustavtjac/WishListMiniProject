@@ -3,7 +3,7 @@ package mrrock.com.wishlistminiproject.Models;
 import java.util.List;
 
 public class Wishlist {
-    private int id;
+    private String id;
     private String name;
     private int userID;
     private List<Wish> wishList;
@@ -11,11 +11,11 @@ public class Wishlist {
     public Wishlist() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

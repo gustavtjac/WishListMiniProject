@@ -37,7 +37,7 @@ public class UserService {
         return userWishList;
     }
 
-    public List<Wish> getAllWishesFromWishListID(int id) {
+    public List<Wish> getAllWishesFromWishListID(String id) {
         return userRepository.getWishFromWishlistID(id);
     }
 
@@ -49,29 +49,29 @@ public class UserService {
        return userRepository.createNewWishList(name,userID);
     }
 
-    public Wishlist getWishlistFromID(int id) {
+    public Wishlist getWishlistFromID(String id) {
         return userRepository.getWishlistFromID(id);
     }
 
-    public boolean checkIfUserOwnList(int listId,User user){
+    public boolean checkIfUserOwnList(String listId,User user){
         return userRepository.checkIfUserOwnList(listId,user);
     }
 
-    public Wish getWishFromID(int wishID){
+    public Wish getWishFromID(String wishID){
 
         return userRepository.getWishFromID(wishID);
     }
 
-    public boolean checkIfUserOwnsWish(User user, int wishID){
+    public boolean checkIfUserOwnsWish(User user, String wishID){
         return userRepository.checkIfUserOwnWish(user,wishID);
     }
 
-    public boolean deleteWishlist(int WishlistID){
+    public boolean deleteWishlist(String WishlistID){
         return userRepository.deleteWishlist(WishlistID);
     }
 
 
-    public boolean deleteWishFromID(int WishID){
+    public boolean deleteWishFromID(String WishID){
         return userRepository.deleteWishFromID(WishID);
     }
 
@@ -86,7 +86,7 @@ public User getUserFromUsername(String username){
        return userRepository.getUserFromUsername(username);
 }
 
-public Wish reserveWishFromId(int wishID){
+public Wish reserveWishFromId(String wishID){
       return userRepository.reserveWishFromId(wishID);
 }
 

@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS WishlistDB;
 CREATE DATABASE WishlistDB;
 USE WishlistDB;
 
+-- Opretter User tabellen
 CREATE TABLE USER (
                       USER_ID INTEGER(10) PRIMARY KEY AUTO_INCREMENT,
                       USER_USERNAME VARCHAR(25) UNIQUE NOT NULL,
@@ -9,16 +10,18 @@ CREATE TABLE USER (
                       USER_NAME VARCHAR(25)
 );
 
+-- Opretter Wishlist tabellen
 CREATE TABLE WISHLIST (
-                          WISHLIST_ID INTEGER(10) PRIMARY KEY AUTO_INCREMENT,
-                          WISHLIST_USER_ID INTEGER(10) Not NULL,
+                          WISHLIST_ID CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+                          WISHLIST_USER_ID INTEGER(10) NOT NULL,
                           WISHLIST_NAME VARCHAR(55) NOT NULL,
                           FOREIGN KEY (WISHLIST_USER_ID) REFERENCES USER(USER_ID)
 );
 
+-- Opretter wish tabellen
 CREATE TABLE WISH (
-                      WISH_ID INTEGER(10) PRIMARY KEY AUTO_INCREMENT,
-                      WISH_WISHLIST_ID INTEGER(10) NOT NULL,
+                      WISH_ID CHAR(36) PRIMARY KEY DEFAULT (UUID()),
+                      WISH_WISHLIST_ID CHAR(36) NOT NULL,
                       WISH_NAME VARCHAR(55) NOT NULL,
                       WISH_DESC VARCHAR(255) NOT NULL,
                       WISH_IMGURL VARCHAR(999),
