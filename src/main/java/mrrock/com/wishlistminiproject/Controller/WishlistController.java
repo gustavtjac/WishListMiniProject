@@ -5,7 +5,12 @@ import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
 import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Models.Wishlist;
+import mrrock.com.wishlistminiproject.Repository.UserRepository;
+import mrrock.com.wishlistminiproject.Repository.WishListRepository;
+import mrrock.com.wishlistminiproject.Repository.WishRepository;
 import mrrock.com.wishlistminiproject.Service.UserService;
+import mrrock.com.wishlistminiproject.Service.WishListService;
+import mrrock.com.wishlistminiproject.Service.WishService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +26,11 @@ public class WishlistController {
 
     @Autowired
 private UserService userService;
+    @Autowired
+    private WishListService wishListService;
+    @Autowired
+    private WishService wishService;
+
 
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
@@ -111,7 +121,7 @@ if ((User)session.getAttribute("user")!=null){
     model.addAttribute("loggedInUser",(User)session.getAttribute("user"));
 }
         model.addAttribute("user",userService.getUserFromUsername(username));
-        model.addAttribute("ønskelister",userService.getAllwishListsFromUserID(userService.getUserFromUsername(username).getId()));
+        model.addAttribute("ønskelister",wishListService.getAllwishListsFromUserID(userService.getUserFromUsername(username).getId()));
         return "overview";
     }
 
@@ -137,7 +147,7 @@ if ((User)session.getAttribute("user")!=null){
     public String newListRequest(@RequestParam String name, @RequestParam int userID, RedirectAttributes redirectAttributes, HttpSession session){
         User user = (User) session.getAttribute("user");
 
-        Wishlist wishlist = userService.createNewWishList(name,userID);
+        Wishlist wishlist = wishListService.createNewWishList(name,userID);
         if (wishlist==null){
             redirectAttributes.addAttribute("error","Something Went Wrong Try Again");
             return "redirect:/createnewlist";
@@ -155,8 +165,8 @@ if ((User)session.getAttribute("user")!=null){
         model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
         model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
         model.addAttribute("user",userService.getUserFromUsername(username));
-        model.addAttribute("wish", userService.getAllWishesFromWishListID(id));
-        model.addAttribute("wishlist", userService.getWishlistFromID(id));
+        model.addAttribute("wish", wishListService.getAllWishesFromWishListID(id));
+        model.addAttribute("wishlist", wishListService.getWishlistFromID(id));
         return "wishlist";
     }
 
@@ -174,7 +184,7 @@ if ((User)session.getAttribute("user")!=null){
     }
     @PostMapping("/createnewwish")
     public String newWishRequest(@ModelAttribute Wish wish,RedirectAttributes redirectAttributes, HttpSession session){
-        Wish newWish =userService.createNewWish(wish);
+        Wish newWish =wishService.createNewWish(wish);
         if (newWish==null){
             redirectAttributes.addAttribute("error","Something Went Wrong Try Again");
             return "redirect:/createnewlist";
@@ -189,7 +199,7 @@ model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
 model.addAttribute("ownerUsername",username);
         model.addAttribute("user",(User) session.getAttribute("user"));
-        model.addAttribute("wish",userService.getWishFromID(wishID));
+        model.addAttribute("wish",wishService.getWishFromID(wishID));
         model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
         return "wish";
     }
@@ -198,7 +208,7 @@ model.addAttribute("ownerUsername",username);
     @PostMapping("wishlist/delete/{wishlistID}")
     public String deleteWishlist(@PathVariable String wishlistID, HttpSession session){
         if (userService.checkIfUserOwnList(wishlistID,(User) session.getAttribute("user"))){
-            userService.deleteWishlist(wishlistID);
+            wishListService.deleteWishlist(wishlistID);
         }
         return "redirect:/"+ ((User) session.getAttribute("user")).getUsername();
     }
@@ -209,7 +219,7 @@ model.addAttribute("ownerUsername",username);
 
 
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
-            userService.deleteWishFromID(wishID);
+            wishService.deleteWishFromID(wishID);
         }
 
         return "redirect:/"+ ((User) session.getAttribute("user")).getUsername()+ "/wishlist/" + wishListID;
@@ -219,7 +229,7 @@ model.addAttribute("ownerUsername",username);
     public String editWishListPage(Model model, HttpSession session, @PathVariable String wishListID){
         model.addAttribute("loggedInUser",session.getAttribute("user"));
         if (userService.checkIfUserOwnList(wishListID,(User) session.getAttribute("user"))){
-            model.addAttribute("wishlist",userService.getWishlistFromID(wishListID));
+            model.addAttribute("wishlist",wishListService.getWishlistFromID(wishListID));
             model.addAttribute("owner",true);
             return "editWishlist";
         }
@@ -237,7 +247,7 @@ model.addAttribute("ownerUsername",username);
         wishlist.setUserID(userID);
         wishlist.setId(id);
         if (userService.checkIfUserOwnList(wishlist.getId(),(User) session.getAttribute("user"))){
-            userService.updateWishListFromID(wishlist);
+            wishListService.updateWishListFromID(wishlist);
         }
 
         return "redirect:/" +((User) session.getAttribute("user")).getUsername();
@@ -247,7 +257,7 @@ model.addAttribute("ownerUsername",username);
     public String editWishPage(Model model, HttpSession session, @PathVariable String wishID){
 
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
-            model.addAttribute("wish",userService.getWishFromID(wishID));
+            model.addAttribute("wish",wishService.getWishFromID(wishID));
             model.addAttribute("owner",true);
             model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
 
@@ -259,7 +269,7 @@ model.addAttribute("ownerUsername",username);
 @PostMapping("/editwish")
     public String editWishRequest(Model model, HttpSession session,@ModelAttribute Wish wish){
     if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wish.getId())){
-        userService.updateWishFromID(wish);
+        wishService.updateWishFromID(wish);
         }
 
     return "redirect:/"+((User) session.getAttribute("user")).getUsername()+"/wishlist/" + wish.getWishlistID();
@@ -267,11 +277,11 @@ model.addAttribute("ownerUsername",username);
 
 @PostMapping("/reservewish")
     public String reserveWishRequest(HttpSession session, @RequestParam String wishID, @RequestParam String usernameFromOwner){
-        if ((User) session.getAttribute("user")!=null&& !userService.getWishFromID(wishID).isReserved()){
-            userService.reserveWishFromId(wishID);
-            return "redirect:/"+usernameFromOwner+"/wishlist/" + userService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
+        if ((User) session.getAttribute("user")!=null&& !wishService.getWishFromID(wishID).isReserved()){
+            wishService.reserveWishFromId(wishID);
+            return "redirect:/"+usernameFromOwner+"/wishlist/" + wishService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
         }
-    return "redirect:/"+usernameFromOwner+"/wishlist/" + userService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
+    return "redirect:/"+usernameFromOwner+"/wishlist/" + wishService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
 }
 
 
