@@ -13,8 +13,6 @@ import java.util.List;
 @Service
 public class WishListService {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private WishListRepository wishListRepository;
     @Autowired
     private WishRepository wishRepository;

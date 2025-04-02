@@ -10,10 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class WishService {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private WishListRepository wishListRepository;
-    @Autowired
     private WishRepository wishRepository;
     public Wish createNewWish(Wish wish){
         return wishRepository.createNewWish(wish);
