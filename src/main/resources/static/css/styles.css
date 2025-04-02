@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
 :root {
-    /* Colors */
-    --primær-farve: #00c8ff;  /* Green */
-    --secondary-color: #ffffff; /* Orange */
+
+    --primær-farve: #00c8ff;
+    --secondary-color: #ffffff;
     --background-color: #f4f4f4;
     --text-color: #000000;
-    /* Typography */
+
     --font-family: 'Lilita One', sans-serif;
     --font-size-base: 16px;
     --font-size-heading: 24px;
 
-    /* Shadows */
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -228,12 +227,6 @@ li {
     color: black;
 }
 
-
-
-
-
-
-
 article {
     display: flex;
     flex-direction: column;
@@ -301,7 +294,6 @@ input[type=text], input[type=password] {
     justify-content: space-evenly;
     margin: 100px;
     height: 650px;
-    padding: 0px;
     box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
 }
 #main-indhold-tekst{
@@ -475,4 +467,89 @@ width: 700px;
 #single-ønske-knappe-holder form {
     width: 100px;
     height: 800px;
+}
+
+.wish-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 150px;
+    gap: 3em;
+    margin-left: 100px;
+    margin-right: 100px;
+
+}
+
+.profile-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    background-color: #00689C;
+    color: white;
+    width: 420px;
+    height: 115px;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.wish-container {
+    display: flex;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 20px 100px;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+    border-radius: 25px;
+    flex-wrap: wrap;
+}
+
+.add-wish {
+    display: flex;
+
+}
+
+.add-wish button {
+    background-color: #00aaff;
+    color: white;
+    cursor: pointer;
+
+    border: none;
+    height: 70px;
+    width: 275px;
+    font-size: 28px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+    transition: 0.2s;
+}
+
+.add-wish button:hover {
+    color: black;
+    box-shadow: 0 0 10px 6px rgba(0,0,0, 0.2);
+}
+.add-wish button:active {
+    opacity: 0.5;
+    transition: none;
+}
+
+.add-wish button [data-role="add-wish"] {
+    background-color: #00aaff;
+    color: white;
+
+}
+
+.create-wishlist-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 100px 500px;
+    height: 650px;
+    padding: 50px;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+    border-radius: 10px;
+}
+.create-wishlist-container h2 {
+    margin-bottom: 50px;
+    font-size: 40px;
 }
