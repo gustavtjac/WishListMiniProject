@@ -31,17 +31,20 @@
     </nav>
 </header>
 <main>
-    <div class="create-new-wish-layout">
-        <p>Create new Wishlist</p>
+    <div class="create-wishlist-container">
+        <h2>Create new Wishlist</h2>
         <p th:text="${error}"></p>
-        <form class="formBox" th:action="@{/createnewlist}" th:method="post" >
-            <label for="name"><b>Wishlist name</b></label>
-            <input type="text" placeholder="Enter Wishlist name" name="name" required id="name">
-            <label for="userID"></label>
-            <input type="hidden" name="userID" required id="userID" th:value="${loggedInUser.getId()}">
+        <div class="formBox">
+            <form th:action="@{/createnewlist}" th:method="post" >
+                <label for="name"><b>Wishlist name</b></label>
+                <input type="text" placeholder="Enter Wishlist name" name="name" required id="name">
+                <label for="userID"></label>
+                <input type="hidden" name="userID" required id="userID" th:value="${loggedInUser.getId()}">
 
-            <button type="submit">Create wishlist!</button>
-        </form>
+                <button type="submit">Create wishlist!</button>
+            </form>
+        </div>
+
     </div>
 </main>
 </body>
