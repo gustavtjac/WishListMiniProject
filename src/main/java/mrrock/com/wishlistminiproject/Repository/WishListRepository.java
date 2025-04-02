@@ -1,9 +1,7 @@
 package mrrock.com.wishlistminiproject.Repository;
 
 import mrrock.com.wishlistminiproject.Models.User;
-import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Models.Wishlist;
-import mrrock.com.wishlistminiproject.Rowmappers.WishRowMapper;
 import mrrock.com.wishlistminiproject.Rowmappers.WishlistRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class WishListRepository {
+public class WishListRepository implements CrudOperations<Wishlist, String> {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -32,15 +30,6 @@ public class WishListRepository {
         return null;
     }
 
-    public Wishlist getWishlistFromID(String id) {
-        String sql = "Select * from wishlist where WISHLIST_ID = ?";
-
-        List<Wishlist> wishlists = jdbcTemplate.query(sql,new WishlistRowMapper(),id);
-        if (!wishlists.isEmpty()){
-            return wishlists.getFirst();
-        }
-        return null;
-    }
     public boolean checkIfUserOwnList(String listId, User user){
         String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
         if (user != null){
@@ -72,9 +61,14 @@ public class WishListRepository {
         return wishlist;
     }
 
+    @Override
+    public Wishlist findById(String id) {
+        String sql = "Select * from wishlist where WISHLIST_ID = ?";
 
-
-
-
-
+        List<Wishlist> wishlists = jdbcTemplate.query(sql,new WishlistRowMapper(),id);
+        if (!wishlists.isEmpty()){
+            return wishlists.getFirst();
+        }
+        return null;
+    }
 }

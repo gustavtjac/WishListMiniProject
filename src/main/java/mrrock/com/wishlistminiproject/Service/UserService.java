@@ -17,8 +17,6 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private WishListRepository wishListRepository;
-    @Autowired
-    private WishRepository wishRepository;
 
     public User authenticateLogin(String username,String password){
         List<User> authenticatedUser = userRepository.authenticateLogin(username,password);
@@ -47,7 +45,7 @@ public class UserService {
 
 
 public User getUserFromUsername(String username){
-       return userRepository.getUserFromUsername(username);
+       return userRepository.findById(username);
 }
 
 

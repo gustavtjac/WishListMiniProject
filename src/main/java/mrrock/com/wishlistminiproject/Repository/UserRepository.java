@@ -11,10 +11,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Repository
-public class UserRepository {
+public class UserRepository implements CrudOperations<User, String> {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -62,8 +63,8 @@ public class UserRepository {
         return false;
     }
 
-
-    public User getUserFromUsername(String username) {
+    @Override
+    public User findById(String username) {
         String sql = "Select * from user where user_username = ?";
         List<User> userList = jdbcTemplate.query(sql, new UserRowMapper(), username);
         if (!userList.isEmpty()) {

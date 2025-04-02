@@ -13,8 +13,6 @@ import java.util.List;
 @Service
 public class WishListService {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private WishListRepository wishListRepository;
     @Autowired
     private WishRepository wishRepository;
@@ -37,7 +35,7 @@ public class WishListService {
     }
 
     public Wishlist getWishlistFromID(String id) {
-        return wishListRepository.getWishlistFromID(id);
+        return wishListRepository.findById(id);
     }
 
     public boolean deleteWishlist(String WishlistID){
