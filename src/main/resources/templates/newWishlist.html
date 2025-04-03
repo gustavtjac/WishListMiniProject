@@ -37,7 +37,7 @@
         <div class="formBox">
             <form th:action="@{/createnewlist}" th:method="post" >
                 <label for="name"><b>Wishlist name</b></label>
-                <input type="text" placeholder="Enter Wishlist name" name="name" required id="name">
+                <input type="text" placeholder="Enter Wishlist name" name="name" required id="name" size="20" maxlength="20" >
                 <label for="userID"></label>
                 <input type="hidden" name="userID" required id="userID" th:value="${loggedInUser.getId()}">
 
