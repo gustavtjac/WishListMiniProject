@@ -59,20 +59,8 @@
             <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Wishes'}"></p>
             </div>
         </a>
-
-        <a th:if="${owner}" th:href="@{/createnewlist}" class="ønskeliste-kort-opret">
-            <div>
-                <h3>Create a new wishlist!</h3>
-            </div>
-        </a>
-
     </div>
 
 </main>
-
-
-
-
-
 </body>
 </html>

@@ -62,13 +62,16 @@
         <h1 th:if="${wish.isEmpty() && !owner}" th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
 
     </div>
-    <div id="ønskeliste-sektion">
+    <div class="wish-container">
 
         <a th:href="@{'/'+${user.getUsername()}+'/wishlist/' + ${wishlist.getId()} + '/wish/' + ${liste.getId()}}" th:each="liste : ${wish}" class="ønskeliste-kort">
-            <div class="ønskeliste-kort-indhold">
+            <div class="ønske-kort-indhold">
                 <img class="wish-image" th:src="${liste.getImgURL()}" alt="image">
-                <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
-                <p class="ønskeliste-indhold" th:text="${'Price ' + liste.getPrice()}"></p>
+                <div class="wish-info">
+                    <h3 th:text="${liste.getName()}"></h3>
+                    <p th:text="${'Price ' + liste.getPrice()}"></p>
+                </div>
+
             </div>
         </a>
 
