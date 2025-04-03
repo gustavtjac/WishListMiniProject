@@ -33,20 +33,33 @@
     </nav>
 </header>
 <main>
+
+    <div class="wish-nav">
+        <div class="profile-box">
+            <h1 th:text="${wishlist.getName()}"></h1>
+            <a>Wishlist</a>
+        </div>
+
+        <div class="add-wish">
+
+
+            <form th:if="${owner}" th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
+                <button >Edit Wishlist</button>
+            </form>
+            <form th:if="${owner}" th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
+                <button th:if="${owner}">- Delete Wishlist</button>
+            </form>
+            <form th:if="${owner}" th:action="@{'/' + ${id} + '/createnewwish'}">
+                <button data-role="add-wishlist">+ Add Wish</button>
+            </form>
+            <form th:action="@{'/' + ${username}}">
+                <button><-- Go back</button>
+            </form>
+        </div>
+
+    </div>
     <div id="overview-welcome-text">
-        <h1 th:if="${wish.isEmpty()}" th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
-        <h1 th:if="${wish.size()>0}" th:text="'Wishes in ' + ${wishlist.getName()} + ' :)'"></h1>
-
-        <form th:action="@{'/wishlist/delete/'+${wishlist.getId()}}" th:method="post">
-        <button class="button-43" th:if="${owner}">Slet</button>
-        </form>
-        <form  th:action="@{'/edit/wishlist/'+ ${wishlist.getId()}}">
-        <button class="button-43" th:if="${owner}" >Edit Wishlist</button>
-    </form>
-        <form th:action="@{'/' + ${username}}">
-            <button class="button-43"><-- Go back</button>
-        </form>
-
+        <h1 th:if="${wish.isEmpty() && !owner}" th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
 
     </div>
     <div id="ønskeliste-sektion">

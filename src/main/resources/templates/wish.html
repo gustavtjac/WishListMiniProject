@@ -34,8 +34,29 @@
 </header>
 
 <main>
-    <div id="single-ønske-knappe-holder">
-        <a th:href="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}"><button class="button-43"><-- Go back</button></a>
+
+
+    <div class="wish-nav">
+        <div class="profile-box">
+            <h1 th:text="${wish.getName()}"></h1>
+            <a>Wish</a>
+        </div>
+
+        <div class="add-wish">
+
+
+            <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} ">
+                <button >Edit Wish</button>
+            </form>
+            <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}}" th:method="post">
+                <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
+                <button th:if="${owner}">- Delete Wish</button>
+            </form>
+            <form th:action="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}">
+                <button><-- Go Back</button>
+            </form>
+        </div>
+
     </div>
 
     <div id="ønske-holder">
@@ -48,11 +69,7 @@
             <p th:text="${wish.getDescription()}"></p>
             <p th:if="${wish.isReserved() && !owner}">Wish has been reserved!</p>
             <div id="enkelt-ønske-højre-knapper">
-                <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} " th:method="get"><button>Edit Wish</button>
-                </form>
-                <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}} " th:method="post"><button>Delete</button>
-                    <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
-                </form>
+
                 <form th:action="@{/reservewish}" th:method="post">
                     <input type="hidden" th:value="${ownerUsername}"  th:name="usernameFromOwner">
                     <input type="hidden" th:value="${wish.getId()}" name="wishID">

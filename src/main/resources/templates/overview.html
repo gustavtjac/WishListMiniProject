@@ -41,13 +41,14 @@
             <a th:if="${owner}">My Wishlists</a>
             <a th:if="${!owner}">Wishlists </a>
         </div>
-
         <div th:if="${owner}" class="add-wish">
             <form th:action="@{/createnewlist}">
                 <button data-role="add-wishlist">+ Add Wishlist</button>
             </form>
 
         </div>
+
+
     </div>
 
     <div class="wish-container">
@@ -56,9 +57,6 @@
             <div class="ønskeliste-kort-indhold">
             <h3 class="ønskeliste-indhold" th:text="${liste.getName()}"></h3>
             <p class="ønskeliste-indhold" th:text="${liste.getWishList().size() + ' Wishes'}"></p>
-                <form th:if="${owner}" th:action="@{'/edit/wishlist/'+ ${liste.getId()}}">
-                    <button>Edit Wishlist</button>
-                </form>
             </div>
         </a>
 
@@ -67,6 +65,7 @@
                 <h3>Create a new wishlist!</h3>
             </div>
         </a>
+
     </div>
 
 </main>
