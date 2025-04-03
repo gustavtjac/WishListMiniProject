@@ -52,7 +52,7 @@
 
     <div id="ønske-holder">
         <div id="enkelt-ønske-venstre">
-            <img th:if="${wish.getImgURL().isEmpty()}" src="/images/team.jpg" class="enkelt-billede" alt="WishIMG">
+            <img th:if="${wish.getImgURL().isEmpty()}" src="/images/wish-placeholder.jpg" class="enkelt-billede" alt="WishIMG">
             <img th:if="${!wish.getImgURL().isEmpty()}" class="enkelt-billede" th:src="${wish.getImgURL()}"  alt="WishIMG">
         </div>
         <div id="enkelt-ønske-højre">
