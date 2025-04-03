@@ -20,7 +20,6 @@
                 <a th:href="@{/contact}">Contact</a>
 
                 <div class="nav-buttons">
-                    <a th:if="${owner}"  th:href="@{'/'+ ${wishlist.getId()}+  '/createnewwish'}">+</a>
                     <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
                     <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
                     <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${loggedInUser.getUsername()}}">Go to Wishes!</a></button>
@@ -73,12 +72,6 @@
                     <p th:text="${'Price ' + liste.getPrice()}"></p>
                 </div>
 
-            </div>
-        </a>
-
-        <a th:if="${owner}" th:href="@{'/' + ${id} + '/createnewwish'}" class="ønskeliste-kort-opret">
-            <div>
-                <h3>Create a new Wish!</h3>
             </div>
         </a>
     </div>
