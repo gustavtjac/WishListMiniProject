@@ -58,8 +58,8 @@
         </div>
 
     </div>
-    <div id="overview-welcome-text">
-        <h1 th:if="${wish.isEmpty() && !owner}" th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
+    <div id="overview-welcome-text" th:if="${wish.isEmpty() && !owner}">
+        <h1 th:text="${wishlist.  getName()} + ' is empty :)'"></h1>
 
     </div>
     <div id="ønskeliste-sektion">

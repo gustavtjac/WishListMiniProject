@@ -36,16 +36,13 @@
 <main>
 
 
-    <div class="wish-nav">
+    <div class="wish-nav" style="margin-bottom: -20px">
         <div class="profile-box">
             <h1 th:text="${wish.getName()}"></h1>
             <a>Wish</a>
         </div>
 
         <div class="add-wish">
-
-
-
             <form th:action="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}">
                 <button>⮜    Go Back</button>
             </form>
