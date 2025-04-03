@@ -81,6 +81,7 @@ li {
     display: flex;
     align-items: center;
     gap: 1em;
+
 }
 
 .nav-buttons button {
@@ -94,7 +95,13 @@ li {
     height: 45px;
     cursor: pointer;
     border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: color 0.3s;
+}
+
+.nav-buttons button:active {
+    opacity: 0.5;
+    transition: none;
 }
 
 .nav-buttons button[data-role="register"] {
@@ -321,21 +328,27 @@ input[type=text], input[type=password] {
 
 .ønskeliste-kort{
     color: black;
-    margin: 43px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 320px;
+    height: 230px;
     width: 250px;
-    border-radius: 12%;
-    background-color: #8ecae6;
+    gap: 15px;
+    border-radius: 25px;
+    background-color: #6adfff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 50px;
+}
+
+.ønskeliste-kort h3 {
+    font-size: 40px;
 }
 
 .ønskeliste-kort:hover{
     cursor: grab;
-    box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
 }
 .ønskeliste-kort-opret{
@@ -357,7 +370,6 @@ input[type=text], input[type=password] {
 
 }
 .ønskeliste-kort-indhold{
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -391,18 +403,7 @@ input[type=text], input[type=password] {
     border-width: 1px;
 
 }
-.wish-image {
 
-    border-radius: 12%;
-    margin-top: 5px;
-
-    width: 240px;
-    height: 200px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: #219ebc;
-
-}
 #align-center-button{
      display: flex;
      align-items: center;
@@ -516,12 +517,15 @@ width: 700px;
 
 .wish-container {
     display: flex;
+    align-items: center;
+    justify-content: flex-start;
     margin-right: 100px;
     margin-left: 100px;
-    padding: 20px 100px;
-    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+    padding: 60px 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 25px;
     flex-wrap: wrap;
+    gap: 32px;
 }
 
 .add-wish {
@@ -575,4 +579,49 @@ width: 700px;
 .create-wishlist-container h2 {
     margin-bottom: 50px;
     font-size: 40px;
+}
+
+.ønske-kort-indhold {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ønske-kort-indhold:active {
+    opacity: 0.5;
+    transition: none;
+}
+
+.wish-image {
+    object-fit: cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: green;
+    border-radius: 25px;
+    width: 250px;
+    height: 165px;
+    margin-bottom: 8px;
+}
+
+.wish-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 50px;
+    width: 200px;
+    background-color: #00c8ff;
+    margin-bottom: 7px;
+    padding: 0 15px;
+}
+
+.wish-info h3 {
+    font-size: 20px;
+}
+
+.wish-info p {
+    font-size: 12px;
 }
