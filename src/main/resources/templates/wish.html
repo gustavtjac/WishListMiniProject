@@ -36,16 +36,13 @@
 <main>
 
 
-    <div class="wish-nav">
+    <div class="wish-nav" style="margin-bottom: -20px">
         <div class="profile-box">
             <h1 th:text="${wish.getName()}"></h1>
             <a>Wish</a>
         </div>
 
         <div class="add-wish">
-
-
-
             <form th:action="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}">
                 <button>⮜    Go Back</button>
             </form>
@@ -55,7 +52,7 @@
 
     <div id="ønske-holder">
         <div id="enkelt-ønske-venstre">
-            <img th:if="${wish.getImgURL().isEmpty()}" src="/images/team.jpg" class="enkelt-billede" alt="WishIMG">
+            <img th:if="${wish.getImgURL().isEmpty()}" src="/images/wish-placeholder.jpg" class="enkelt-billede" alt="WishIMG">
             <img th:if="${!wish.getImgURL().isEmpty()}" class="enkelt-billede" th:src="${wish.getImgURL()}"  alt="WishIMG">
         </div>
         <div id="enkelt-ønske-højre">
