@@ -411,16 +411,27 @@ input[type=text], input[type=password] {
 
 #ønske-holder{
     display: flex;
+    justify-content: center;
+    align-content: space-between;
     flex-direction: row;
     margin: 50px;
-    border-radius: 11%;
-    background-color: #e1e1e1;
+    border-radius: 2%;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
 }
 #enkelt-ønske-venstre{
+
     margin: 50px;
+
+
+.enkelt-billede{
+    width: 700px;
+    height: 550px;
+    object-fit: contain;
+    max-height: 550px;
+    max-width: 700px;
     border-radius: 11%;
 
-
+}
 }
 #enkelt-ønske-højre{
 margin: 50px;
@@ -431,7 +442,15 @@ margin: 50px;
     padding: 60px;
     border-radius: 10px;
 width: 700px;
-    background-color: beige;
+    box-shadow: 0 0 10px 3px rgba(0,0,0, 0.2);
+}
+
+#enkelt-ønske-højre-knapper{
+    display: flex;
+    flex-direction: row;
+}
+#enkelt-ønske-højre-knapper button{
+    margin-right: 40px;
 }
 .button-43 {
     background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);

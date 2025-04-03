@@ -45,15 +45,9 @@
         <div class="add-wish">
 
 
-            <form th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} ">
-                <button >Edit Wish</button>
-            </form>
-            <form th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}}" th:method="post">
-                <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
-                <button th:if="${owner}">- Delete Wish</button>
-            </form>
+
             <form th:action="@{'/' + ${username}+'/wishlist/'+${wish.getWishlistID()}}">
-                <button><-- Go Back</button>
+                <button>⮜    Go Back</button>
             </form>
         </div>
 
@@ -61,22 +55,31 @@
 
     <div id="ønske-holder">
         <div id="enkelt-ønske-venstre">
-            <img th:src="${wish.getWishURL()}"  alt="WishIMG">
+            <img th:if="${wish.getImgURL().isEmpty()}" src="/images/team.jpg" class="enkelt-billede" alt="WishIMG">
+            <img th:if="${!wish.getImgURL().isEmpty()}" class="enkelt-billede" th:src="${wish.getImgURL()}"  alt="WishIMG">
         </div>
         <div id="enkelt-ønske-højre">
             <h2 th:text="${wish.getName()}"></h2>
             <h3 th:text="${'Price: ' + wish.getPrice()}"></h3>
-            <p th:text="${wish.getDescription()}"></p>
+
+            <p th:text="${'Description: ' + wish.getDescription()}"></p>
             <p th:if="${wish.isReserved() && !owner}">Wish has been reserved!</p>
             <div id="enkelt-ønske-højre-knapper">
 
-                <form th:action="@{/reservewish}" th:method="post">
+                <form th:action="@{/reservewish}" th:method="post" class="add-wish">
                     <input type="hidden" th:value="${ownerUsername}"  th:name="usernameFromOwner">
                     <input type="hidden" th:value="${wish.getId()}" name="wishID">
-                    <button th:if="${!owner && loggedIn && wish.isReserved()==false}">Reserve</button>
+                    <button th:if="${!owner && loggedIn && wish.isReserved()==false}">Reserve 🔒</button>
+                </form>
+                <form class="add-wish" th:if="${owner}" th:action="@{'/edit/wish/'+${wish.getId()}} ">
+                    <button >Edit Wish ✏️</button>
+                </form>
+                <form class="add-wish" th:if="${owner}" th:action="@{'/delete/'+${wish.getId()}}" th:method="post">
+                    <input type="hidden" id="wishListID" th:name="wishListID" th:value="${wish.getWishlistID()}">
+                    <button th:if="${owner}">Delete Wish 🗑️❌ </button>
                 </form>
 
-                <a th:if="${!owner}" th:href="@{/}"><button>Visit site</button></a>
+                <a class="add-wish" th:if="${!owner && !wish.getWishURL().isEmpty()}" th:href="@{${wish.getWishURL()}} "><button>Visit site 🚀</button></a>
             </div>
         </div>
 
