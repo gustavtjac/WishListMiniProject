@@ -24,9 +24,9 @@
                           WISH_WISHLIST_ID CHAR(36) NOT NULL,
                           WISH_NAME VARCHAR(55) NOT NULL,
                           WISH_DESC VARCHAR(255) NOT NULL,
-                          WISH_IMGURL VARCHAR(999),
+                          WISH_IMGURL VARCHAR(2000),
                           WISH_PRICE DOUBLE(10,2) NOT NULL,
-                          WISH_URL VARCHAR(255),
+                          WISH_URL VARCHAR(2000),
                           WISH_RESERVED BOOLEAN NOT NULL DEFAULT 0,
                           FOREIGN KEY (WISH_WISHLIST_ID) REFERENCES WISHLIST(WISHLIST_ID)
     );

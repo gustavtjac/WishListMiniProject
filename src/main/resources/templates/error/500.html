@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/frontsite-logo.jpg}">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" href="/css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wishhub</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a th:href="@{/}">WishHub</a>
+            </div>
+
+            <div class="nav-content">
+                <a th:href="@{/about}">About</a>
+                <a th:href="@{/contact}">Contact</a>
+                <div class="nav-user-button"></div>
+
+                <div class="nav-buttons">
+                    <button data-role="register" th:if="${!loggedIn}"><a th:href="@{/register}">Register</a></button>
+                    <button data-role="login" th:if="${!loggedIn}"><a th:href="@{/login}">Sign In</a></button>
+                    <button data-role="login" th:if="${loggedIn}"><a th:href="@{'/'+${user.getUsername()}}">Go to Wishes!</a></button>
+                    <form th:action="@{/logoff}" method="post">
+                        <button data-role="logoff" type="submit" th:if="${loggedIn}" > <a>Sign Out</a> </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <article id="forside-main-indhold">
+        <div class="forside-element">
+            <img src="images/katgave.jpg"  alt="Billede af kat">
+        </div>
+
+        <div id="main-indhold-tekst" class="forside-element">
+            <h2>Oops, its a 500 error :(</h2>
+            <p>The user or wishlist you're looking for probably doesn't exist</p>
+            <a th:href="@{/}">
+                <button id="main-indhold-tekst-knap">Go back to homepage!</button>
+            </a>
+        </div>
+    </article>
+
+</main>
+
+<footer class="foot">
+    <p>Disclaimer: Vi sørger ikke for at du får dine gaver det er ikke vores problem det er et dig problem.</p>
+</footer>
+
+</body>
+</html>
