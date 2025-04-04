@@ -12,6 +12,7 @@ I dette mini-projekt udvikler vi en klon af Ønskeskyen.dk, en platform hvor bru
 
 Backend: Java Spring Boot
 Database: MySQL
+
 Frontend: Thymeleaf (HTML, CSS, JavaScript)
 
 ## ✨ Kernefunktionaliteter
