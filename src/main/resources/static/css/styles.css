@@ -404,15 +404,43 @@ input[type=text], input[type=password] {
 }
 
 .create-new-wish-layout{
-    font-size: 2rem;
-    margin: 50px;
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    border-color: black;
-    border-width: 1px;
+    margin: 100px 500px;
+    height: 650px;
+    padding: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 30px;
+}
 
+.wish-button {
+    margin-top: 30px;
+    margin-left: 125px;
+    background-color: #00689C;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 200px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.create-wishlist-button {
+    margin-top: 30px;
+    margin-left: 100px;
+    background-color: #00689C;
+    border: none;
+    padding: 5px;
+    font-size: 30px;
+    width: 250px;
+    height: 45px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #align-center-button{
