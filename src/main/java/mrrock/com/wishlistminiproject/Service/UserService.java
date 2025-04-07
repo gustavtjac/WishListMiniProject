@@ -18,6 +18,10 @@ public class UserService {
     @Autowired
     private WishListRepository wishListRepository;
 
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     public User authenticateLogin(String username,String password){
         List<User> authenticatedUser = userRepository.authenticateLogin(username,password);
         if (authenticatedUser.isEmpty()){

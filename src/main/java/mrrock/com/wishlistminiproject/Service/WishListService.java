@@ -17,6 +17,10 @@ public class WishListService {
     @Autowired
     private WishRepository wishRepository;
 
+    public WishListService(WishListRepository wishListRepository) {
+        this.wishListRepository = wishListRepository;
+    }
+
 
     public List<Wishlist> getAllwishListsFromUserID(int id){
         List<Wishlist> userWishList = wishRepository.getAllwishListsFromUserID(id);
