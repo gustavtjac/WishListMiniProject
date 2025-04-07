@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 public class WishService {
     @Autowired
     private WishRepository wishRepository;
+
+    public WishService(WishRepository wishRepository) {
+        this.wishRepository =wishRepository;
+    }
+
     public Wish createNewWish(Wish wish){
         return wishRepository.createNewWish(wish);
     }
