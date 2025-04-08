@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class WishListRepository implements CrudOperations<Wishlist, String> {
@@ -19,8 +20,8 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
 
     public Wishlist createNewWishList(String name, int userID){
 
-        String sql = "Insert into WISHLIST (WISHLIST_USER_ID,WISHLIST_NAME) values (?,?)";
-        int rowsAffected = jdbcTemplate.update(sql,userID,name);
+        String sql = "Insert into WISHLIST (WISHLIST_USER_ID,WISHLIST_NAME,WISHLIST_ID) values (?,?,?)";
+        int rowsAffected = jdbcTemplate.update(sql,userID,name,UUID.randomUUID().toString());
         if (rowsAffected>0){
             Wishlist wishlist = new Wishlist();
             wishlist.setName(name);
@@ -28,6 +29,10 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
             return wishlist;
         }
         return null;
+    }
+    public List<Wishlist> getAllwishListsFromUserID(int id){
+        String sql = "Select * from WISHLIST where WISHLIST_USER_ID = ?";
+        return jdbcTemplate.query(sql,new WishlistRowMapper(),id);
     }
 
     public boolean checkIfUserOwnList(String listId, User user){

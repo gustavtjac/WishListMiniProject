@@ -3,7 +3,7 @@
     USE WishlistDB;
 
     -- Opretter User tabellen
-    CREATE TABLE USER (
+    CREATE TABLE USERS (
                           USER_ID INTEGER(10) PRIMARY KEY AUTO_INCREMENT,
                           USER_USERNAME VARCHAR(50) UNIQUE NOT NULL,
                           USER_PASSWORD VARCHAR(60) NOT NULL,
@@ -15,7 +15,7 @@
                               WISHLIST_ID CHAR(36) PRIMARY KEY DEFAULT (UUID()),
                               WISHLIST_USER_ID INTEGER(10) NOT NULL,
                               WISHLIST_NAME VARCHAR(55) NOT NULL,
-                              FOREIGN KEY (WISHLIST_USER_ID) REFERENCES USER(USER_ID)
+                              FOREIGN KEY (WISHLIST_USER_ID) REFERENCES USERS(USER_ID)
     );
 
     -- Opretter wish tabellen

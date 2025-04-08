@@ -1,7 +1,7 @@
 USE WishlistDB;
 -- FØRST KØR SCRIPT EFTER DU HAR OPRETTET EN BRUGER SÅ DU KAN HIVE DEN KRYPTEREDE KODE
 -- Opretter vores brugere,
-INSERT INTO USER (USER_USERNAME, USER_PASSWORD, USER_NAME) VALUES
+INSERT INTO USERS (USER_USERNAME, USER_PASSWORD, USER_NAME) VALUES
                                                                ('longline', '123', 'Long'),
                                                                ('gustavtjac', '123', 'Gustavo'),
                                                                ('fredfox', '123', 'Freddie'),
