@@ -2,13 +2,12 @@ package mrrock.com.wishlistminiproject.Service;
 
 import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Repository.WishRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class WishService {
-    @Autowired
-    private WishRepository wishRepository;
+
+    private final WishRepository wishRepository;
 
     public WishService(WishRepository wishRepository) {
         this.wishRepository =wishRepository;

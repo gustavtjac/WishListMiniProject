@@ -8,7 +8,6 @@ import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import mrrock.com.wishlistminiproject.Service.WishListService;
 import mrrock.com.wishlistminiproject.Service.WishService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +16,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller()
 public class WishlistController {
 
+private final UserService userService;
+private final WishListService wishListService;
+private final WishService wishService;
 
-    @Autowired
-private UserService userService;
-    @Autowired
-    private WishListService wishListService;
-    @Autowired
-    private WishService wishService;
-
+    public WishlistController(UserService userService, WishListService wishListService, WishService wishService) {
+        this.userService = userService;
+        this.wishListService = wishListService;
+        this.wishService = wishService;
+    }
 
     // Endpoint til at vise vores landingpage :)
     @GetMapping("/")
@@ -271,7 +271,7 @@ model.addAttribute("ownerUsername",username);
 
 @PostMapping("/reservewish")
     public String reserveWishRequest(HttpSession session, @RequestParam String wishID, @RequestParam String usernameFromOwner){
-        if ((User) session.getAttribute("user")!=null&& !wishService.getWishFromID(wishID).isReserved()){
+        if (session.getAttribute("user")!=null&& !wishService.getWishFromID(wishID).isReserved()){
             wishService.reserveWishFromId(wishID);
             return "redirect:/"+usernameFromOwner+"/wishlist/" + wishService.getWishFromID(wishID).getWishlistID()+"/wish/"+wishID;
         }

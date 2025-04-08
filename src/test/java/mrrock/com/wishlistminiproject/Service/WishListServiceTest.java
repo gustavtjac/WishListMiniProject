@@ -3,6 +3,7 @@ package mrrock.com.wishlistminiproject.Service;
 
 import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Repository.WishListRepository;
+import mrrock.com.wishlistminiproject.Repository.WishRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -16,8 +17,10 @@ public class WishListServiceTest {
 
     @Test
     void getWishListFromID_ShouldReturnWishList(){
+
+        WishRepository mockWishRepo = mock(WishRepository.class);
         WishListRepository mockRepo = mock(WishListRepository.class);
-        WishListService wishListService = new WishListService(mockRepo);
+        WishListService wishListService = new WishListService(mockRepo,mockWishRepo);
         Wishlist testWishList = new Wishlist();
         testWishList.setId(UUID.randomUUID().toString());
         testWishList.setName("TestListe");

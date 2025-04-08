@@ -2,7 +2,6 @@ package mrrock.com.wishlistminiproject.Controller;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
-import mrrock.com.wishlistminiproject.Models.User;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
