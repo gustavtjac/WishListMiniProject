@@ -31,7 +31,7 @@ private UserService userService;
     public String landingPage(HttpSession session,Model model) {
         if(session.getAttribute("user") !=null){
             model.addAttribute("loggedIn",true);
-            model.addAttribute("user",(User) session.getAttribute("user"));
+            model.addAttribute("user",session.getAttribute("user"));
             return "landingpage";
         }
         model.addAttribute("loggedIn",false);
@@ -44,7 +44,7 @@ private UserService userService;
         model.addAttribute("loggedIn",false);
         if(session.getAttribute("user") !=null){
             model.addAttribute("loggedIn",true);
-            model.addAttribute("user",(User) session.getAttribute("user"));
+            model.addAttribute("user",session.getAttribute("user"));
         }
         return "about";
     }
@@ -55,7 +55,7 @@ private UserService userService;
         model.addAttribute("loggedIn",false);
         if(session.getAttribute("user") !=null){
             model.addAttribute("loggedIn",true);
-            model.addAttribute("user",(User) session.getAttribute("user"));
+            model.addAttribute("user",session.getAttribute("user"));
         }
         return "contact";
     }
@@ -109,10 +109,10 @@ private UserService userService;
     public String overviewPage(HttpSession session,Model model,@PathVariable String username){
         model.addAttribute("owner",false);
         model.addAttribute("loggedInUser",null);
-if ((User)session.getAttribute("user")!=null){
+if (session.getAttribute("user")!=null){
     User user = (User)session.getAttribute("user");
     model.addAttribute("owner",user.getUsername().equalsIgnoreCase(username));
-    model.addAttribute("loggedInUser",(User)session.getAttribute("user"));
+    model.addAttribute("loggedInUser",session.getAttribute("user"));
 }
         model.addAttribute("user",userService.getUserFromUsername(username));
         model.addAttribute("ønskelister",wishListService.getAllwishListsFromUserID(userService.getUserFromUsername(username).getId()));
@@ -132,7 +132,7 @@ if ((User)session.getAttribute("user")!=null){
         }
 
         model.addAttribute("error",error);
-        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
+        model.addAttribute("loggedInUser",session.getAttribute("user"));
 
         return "newWishlist";
     }
@@ -156,8 +156,8 @@ if ((User)session.getAttribute("user")!=null){
         if (userService.checkIfUserOwnList(id,(User) session.getAttribute("user"))){
             model.addAttribute("owner",true);
         }
-        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
-        model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
+        model.addAttribute("loggedInUser",session.getAttribute("user"));
+        model.addAttribute("loggedIn",session.getAttribute("user")!=null);
         model.addAttribute("user",userService.getUserFromUsername(username));
         model.addAttribute("wish", wishListService.getAllWishesFromWishListID(id));
         model.addAttribute("wishlist", wishListService.getWishlistFromID(id));
@@ -171,7 +171,7 @@ if ((User)session.getAttribute("user")!=null){
             return "redirect:/login";
         }
 
-        model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
+        model.addAttribute("loggedInUser",session.getAttribute("user"));
         model.addAttribute("error",error);
         model.addAttribute("wishlistID",id);
         return "newWish";
@@ -192,9 +192,9 @@ if ((User)session.getAttribute("user")!=null){
 model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
 model.addAttribute("ownerUsername",username);
-        model.addAttribute("user",(User) session.getAttribute("user"));
+        model.addAttribute("user",session.getAttribute("user"));
         model.addAttribute("wish",wishService.getWishFromID(wishID));
-        model.addAttribute("loggedIn",(User) session.getAttribute("user")!=null);
+        model.addAttribute("loggedIn",session.getAttribute("user")!=null);
         return "wish";
     }
 
@@ -253,7 +253,7 @@ model.addAttribute("ownerUsername",username);
         if (userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID)){
             model.addAttribute("wish",wishService.getWishFromID(wishID));
             model.addAttribute("owner",true);
-            model.addAttribute("loggedInUser",(User) session.getAttribute("user"));
+            model.addAttribute("loggedInUser",session.getAttribute("user"));
 
             return "editWish";
         }
