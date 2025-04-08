@@ -11,7 +11,7 @@ import java.util.UUID;
 @Repository
 public class WishRepository implements CrudOperations<Wish,String>{
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public WishRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -45,10 +45,7 @@ public class WishRepository implements CrudOperations<Wish,String>{
         String wishSql = "DELETE FROM WISH WHERE WISH_ID = ?";
         int rowsaffectedWish = jdbcTemplate.update(wishSql, wishID);
 
-        if (rowsaffectedWish > 0) {
-            return true;
-        }
-        return false;
+        return rowsaffectedWish > 0;
     }
 
     public Wish updateWishFromID(Wish wish) {

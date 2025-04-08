@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public interface CrudOperations<T,ID extends Serializable> {
 
-    public T findById(ID id);
+    T findById(ID id);
 
 
 }
