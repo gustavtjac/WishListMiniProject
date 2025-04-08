@@ -44,14 +44,14 @@
       <textarea placeholder="Enter Description" name="description" required id="description"></textarea>
 
       <label for="wishURL"><b>Wish link</b></label>
-      <input type="text" placeholder="Enter Wish URL" name="wishURL" id="wishURL">
+      <input type="url" placeholder="Enter Wish URL" name="wishURL" id="wishURL">
 
       <label for="imgURL"><b>Image link</b></label>
-      <input type="text" placeholder="Enter Image URL" name="imgURL" id="imgURL">
+      <input type="url" placeholder="Enter Image URL" name="imgURL" id="imgURL">
 
       <input type="hidden" name="wishlistID" th:value="${wishlistID}" required id="wishlistID">
 
-      <button class="align-center-button" type="submit">Create wish!</button>
+      <button class="wish-button" type="submit">Create wish!</button>
     </form>
   </div>
 </main>
