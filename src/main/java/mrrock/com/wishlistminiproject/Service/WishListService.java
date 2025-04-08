@@ -2,7 +2,6 @@ package mrrock.com.wishlistminiproject.Service;
 
 import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Models.Wishlist;
-import mrrock.com.wishlistminiproject.Repository.UserRepository;
 import mrrock.com.wishlistminiproject.Repository.WishListRepository;
 import mrrock.com.wishlistminiproject.Repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;

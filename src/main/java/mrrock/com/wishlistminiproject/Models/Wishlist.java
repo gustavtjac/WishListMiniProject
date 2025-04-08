@@ -1,7 +1,12 @@
 package mrrock.com.wishlistminiproject.Models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
+@Getter
 public class Wishlist {
     private String id;
     private String name;
@@ -9,38 +14,6 @@ public class Wishlist {
     private List<Wish> wishList;
 
     public Wishlist() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public List<Wish> getWishList() {
-        return wishList;
-    }
-
-    public void setWishList(List<Wish> wishList) {
-        this.wishList = wishList;
     }
 
     @Override

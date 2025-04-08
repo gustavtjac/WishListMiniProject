@@ -1,9 +1,7 @@
 package mrrock.com.wishlistminiproject.Repository;
 
 import mrrock.com.wishlistminiproject.Models.Wish;
-import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Rowmappers.WishRowMapper;
-import mrrock.com.wishlistminiproject.Rowmappers.WishlistRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

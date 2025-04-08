@@ -18,12 +18,11 @@ public class CustomErrorController implements ErrorController {
         String errorPage = "error"; // default
 
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
         if (status != null) {
             model.addAttribute("user",((User) session.getAttribute("user")));
             model.addAttribute("loggedIn",((User) session.getAttribute("user"))!=null);
 
-            Integer statusCode = Integer.valueOf(status.toString());
+            int statusCode = Integer.parseInt(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 // handle HTTP 404 Not Found error

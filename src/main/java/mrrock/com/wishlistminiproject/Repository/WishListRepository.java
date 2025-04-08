@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public class WishListRepository implements CrudOperations<Wishlist, String> {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public WishListRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -54,10 +54,7 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
         String sql = "DELETE FROM wishlist WHERE WISHLIST_ID = ?";
         int rowsaffectedWishlist = jdbcTemplate.update(sql, wishlistID);
 
-        if (rowsaffectedWishlist > 0) {
-            return true;
-        }
-        return false;
+        return rowsaffectedWishlist > 0;
     }
 
     public Wishlist updateWishListFromID(Wishlist wishlist) {
