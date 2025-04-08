@@ -7,18 +7,17 @@ import mrrock.com.wishlistminiproject.Models.Wishlist;
 import mrrock.com.wishlistminiproject.Rowmappers.UserRowMapper;
 import mrrock.com.wishlistminiproject.Rowmappers.WishRowMapper;
 import mrrock.com.wishlistminiproject.Rowmappers.WishlistRowMapper;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import java.io.Serializable;
+
 import java.util.List;
 
 @Repository
 public class UserRepository implements CrudOperations<User, String> {
 
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
 
     public UserRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -33,6 +32,7 @@ public class UserRepository implements CrudOperations<User, String> {
 
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+            assert user != null;
             if (passwordEncoder.matches(password, user.getPassword())) {
                 return List.of(user);
             } else {

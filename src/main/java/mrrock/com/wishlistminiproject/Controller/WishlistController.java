@@ -5,9 +5,6 @@ import jakarta.servlet.http.HttpSession;
 import mrrock.com.wishlistminiproject.Models.User;
 import mrrock.com.wishlistminiproject.Models.Wish;
 import mrrock.com.wishlistminiproject.Models.Wishlist;
-import mrrock.com.wishlistminiproject.Repository.UserRepository;
-import mrrock.com.wishlistminiproject.Repository.WishListRepository;
-import mrrock.com.wishlistminiproject.Repository.WishRepository;
 import mrrock.com.wishlistminiproject.Service.UserService;
 import mrrock.com.wishlistminiproject.Service.WishListService;
 import mrrock.com.wishlistminiproject.Service.WishService;
@@ -16,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.lang.ref.ReferenceQueue;
-
 
 @Controller()
 public class WishlistController {
@@ -193,7 +187,7 @@ if ((User)session.getAttribute("user")!=null){
     }
 
     @GetMapping("/{username}/wishlist/{wishlistID}/wish/{wishID}")
-    public String viewWishPage(@PathVariable String wishID,HttpSession session,Model model,@PathVariable String username){
+    public String viewWishPage(@PathVariable String wishID,HttpSession session,Model model,@PathVariable String username, @PathVariable String wishlistID){
 
 model.addAttribute("wishID",wishID);
 model.addAttribute("owner",userService.checkIfUserOwnsWish((User) session.getAttribute("user"),wishID));
