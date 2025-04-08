@@ -2,6 +2,7 @@ package mrrock.com.wishlistminiproject.Service;
 
 import mrrock.com.wishlistminiproject.Models.User;
 import mrrock.com.wishlistminiproject.Repository.UserRepository;
+import mrrock.com.wishlistminiproject.Repository.WishListRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -17,9 +18,9 @@ public class UserServiceTest {
 
     @Test
     void getUserByUsername_ReturnsUser(){
-
+        WishListRepository mockWishRepo = mock(WishListRepository.class);
         UserRepository mockRepo = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepo);
+        UserService userService = new UserService(mockRepo,mockWishRepo);
         User testUser = new User();
         testUser.setUsername("findMyUser");
         testUser.setName("testName");

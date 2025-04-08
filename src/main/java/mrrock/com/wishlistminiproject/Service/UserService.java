@@ -3,23 +3,25 @@ package mrrock.com.wishlistminiproject.Service;
 import mrrock.com.wishlistminiproject.Models.User;
 import mrrock.com.wishlistminiproject.Repository.UserRepository;
 import mrrock.com.wishlistminiproject.Repository.WishListRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class UserService {
-@Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private WishListRepository wishListRepository;
 
-    public UserService(UserRepository userRepository) {
+    private final UserRepository userRepository;
+
+    private final WishListRepository wishListRepository;
+
+    public UserService(UserRepository userRepository, WishListRepository wishListRepository) {
         this.userRepository = userRepository;
+        this.wishListRepository = wishListRepository;
     }
 
-    public User authenticateLogin(String username,String password){
+
+
+    public User authenticateLogin(String username, String password){
         List<User> authenticatedUser = userRepository.authenticateLogin(username,password);
         if (authenticatedUser.isEmpty()){
             return null;
