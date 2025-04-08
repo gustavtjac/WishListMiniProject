@@ -18,11 +18,11 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Wishlist createNewWishList(String name, int userID){
+    public Wishlist createNewWishList(String name, int userID) {
 
         String sql = "Insert into WISHLIST (WISHLIST_USER_ID,WISHLIST_NAME,WISHLIST_ID) values (?,?,?)";
-        int rowsAffected = jdbcTemplate.update(sql,userID,name,UUID.randomUUID().toString());
-        if (rowsAffected>0){
+        int rowsAffected = jdbcTemplate.update(sql, userID, name, UUID.randomUUID().toString());
+        if (rowsAffected > 0) {
             Wishlist wishlist = new Wishlist();
             wishlist.setName(name);
             wishlist.setUserID(userID);
@@ -30,17 +30,18 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
         }
         return null;
     }
-    public List<Wishlist> getAllwishListsFromUserID(int id){
+
+    public List<Wishlist> getAllwishListsFromUserID(int id) {
         String sql = "Select * from WISHLIST where WISHLIST_USER_ID = ?";
-        return jdbcTemplate.query(sql,new WishlistRowMapper(),id);
+        return jdbcTemplate.query(sql, new WishlistRowMapper(), id);
     }
 
-    public boolean checkIfUserOwnList(String listId, User user){
+    public boolean checkIfUserOwnList(String listId, User user) {
         String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
-        if (user != null){
-            List<Wishlist> wishlistList = jdbcTemplate.query(sql,new WishlistRowMapper(),user.getId());
-            for (Wishlist wishlist : wishlistList){
-                if (wishlist.getId().equalsIgnoreCase(listId)){
+        if (user != null) {
+            List<Wishlist> wishlistList = jdbcTemplate.query(sql, new WishlistRowMapper(), user.getId());
+            for (Wishlist wishlist : wishlistList) {
+                if (wishlist.getId().equalsIgnoreCase(listId)) {
                     return true;
                 }
             }
@@ -48,6 +49,7 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
 
         return false;
     }
+
     public boolean deleteWishlist(String wishlistID) {
         String wishSql = "DELETE FROM wish WHERE WISH_WISHLIST_ID = ?";
         jdbcTemplate.update(wishSql, wishlistID);
@@ -67,8 +69,8 @@ public class WishListRepository implements CrudOperations<Wishlist, String> {
     public Wishlist findById(String id) {
         String sql = "Select * from wishlist where WISHLIST_ID = ?";
 
-        List<Wishlist> wishlists = jdbcTemplate.query(sql,new WishlistRowMapper(),id);
-        if (!wishlists.isEmpty()){
+        List<Wishlist> wishlists = jdbcTemplate.query(sql, new WishlistRowMapper(), id);
+        if (!wishlists.isEmpty()) {
             return wishlists.getFirst();
         }
         return null;

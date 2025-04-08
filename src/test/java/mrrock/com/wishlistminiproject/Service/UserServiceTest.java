@@ -17,10 +17,10 @@ public class UserServiceTest {
 
 
     @Test
-    void getUserByUsername_ReturnsUser(){
+    void getUserByUsername_ReturnsUser() {
         WishListRepository mockWishRepo = mock(WishListRepository.class);
         UserRepository mockRepo = mock(UserRepository.class);
-        UserService userService = new UserService(mockRepo,mockWishRepo);
+        UserService userService = new UserService(mockRepo, mockWishRepo);
         User testUser = new User();
         testUser.setUsername("findMyUser");
         testUser.setName("testName");
@@ -33,9 +33,8 @@ public class UserServiceTest {
         assertEquals(testUser.getUsername(), result.getUsername());
         assertEquals(testUser.getName(), result.getName());
         assertEquals(testUser.getId(), result.getId());
-        verify(mockRepo,times(1)).findById(testUser.getUsername());
+        verify(mockRepo, times(1)).findById(testUser.getUsername());
     }
-
 
 
 }

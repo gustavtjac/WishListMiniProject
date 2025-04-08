@@ -26,22 +26,22 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @Rollback(true)
 public class WishRepositoryTest {
     @Autowired
- private WishRepository wishRepository;
+    private WishRepository wishRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private WishListRepository wishListRepository;
 
-@Test
+    @Test
     public void makeNewWishFromStart() throws SQLException {
 //Arrange
         //Starter med at lave en user
-        userRepository.registerNewUser("testUser","123","testUserName");
+        userRepository.registerNewUser("testUser", "123", "testUserName");
 
         //henter den nye user fra DB
         User newlyCreatedUser = userRepository.findById("testUser");
         //Opretter ny Liste til den nye bruger
-        wishListRepository.createNewWishList("testListe",newlyCreatedUser.getId());
+        wishListRepository.createNewWishList("testListe", newlyCreatedUser.getId());
         //Henter alle liste fra brugeren (han har kun en )
         List<Wishlist> wishlistList = wishListRepository.getAllwishListsFromUserID(newlyCreatedUser.getId());
         //vi opretter et nyt ønske
@@ -57,31 +57,11 @@ public class WishRepositoryTest {
 
 
         //assert
-        Assertions.assertEquals(1,wishList.size());
-        Assertions.assertEquals("testØnske",wishList.get(0).getName());
-        Assertions.assertEquals("testØnskeDesc",wishList.get(0).getDescription());
-        Assertions.assertEquals(99,wishList.get(0).getPrice());
-        Assertions.assertEquals(wishlistList.get(0).getId(),wishList.get(0).getWishlistID());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Assertions.assertEquals(1, wishList.size());
+        Assertions.assertEquals("testØnske", wishList.get(0).getName());
+        Assertions.assertEquals("testØnskeDesc", wishList.get(0).getDescription());
+        Assertions.assertEquals(99, wishList.get(0).getPrice());
+        Assertions.assertEquals(wishlistList.get(0).getId(), wishList.get(0).getWishlistID());
 
 
     }

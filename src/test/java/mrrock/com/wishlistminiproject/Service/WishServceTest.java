@@ -16,7 +16,7 @@ public class WishServceTest {
 
 
     @Test
-    void getWishListFromID_ShouldReturnWishList(){
+    void getWishListFromID_ShouldReturnWishList() {
         WishRepository mockRepo = mock(WishRepository.class);
         WishService wishService = new WishService(mockRepo);
         Wish testWish = new Wish();
@@ -30,15 +30,10 @@ public class WishServceTest {
         Wish result = mockRepo.findById(testWish.getId());
 
 
-        assertEquals(testWish.getId(),result.getId());
+        assertEquals(testWish.getId(), result.getId());
         assertEquals(testWish.getName(), result.getName());
-        assertEquals(testWish.getPrice(),result.getPrice());
-        verify(mockRepo,times(1)).findById(testWish.getId());
-
-
-
-
-
+        assertEquals(testWish.getPrice(), result.getPrice());
+        verify(mockRepo, times(1)).findById(testWish.getId());
 
 
     }

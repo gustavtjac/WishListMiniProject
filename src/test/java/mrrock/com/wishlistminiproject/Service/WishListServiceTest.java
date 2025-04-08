@@ -16,11 +16,11 @@ public class WishListServiceTest {
 
 
     @Test
-    void getWishListFromID_ShouldReturnWishList(){
+    void getWishListFromID_ShouldReturnWishList() {
 
         WishRepository mockWishRepo = mock(WishRepository.class);
         WishListRepository mockRepo = mock(WishListRepository.class);
-        WishListService wishListService = new WishListService(mockRepo,mockWishRepo);
+        WishListService wishListService = new WishListService(mockRepo, mockWishRepo);
         Wishlist testWishList = new Wishlist();
         testWishList.setId(UUID.randomUUID().toString());
         testWishList.setName("TestListe");
@@ -32,15 +32,10 @@ public class WishListServiceTest {
         Wishlist result = mockRepo.findById(testWishList.getId());
 
 
-        assertEquals(testWishList.getId(),result.getId());
+        assertEquals(testWishList.getId(), result.getId());
         assertEquals(testWishList.getName(), result.getName());
-        assertEquals(testWishList.getUserID(),result.getUserID());
-        verify(mockRepo,times(1)).findById(testWishList.getId());
-
-
-
-
-
+        assertEquals(testWishList.getUserID(), result.getUserID());
+        verify(mockRepo, times(1)).findById(testWishList.getId());
 
 
     }

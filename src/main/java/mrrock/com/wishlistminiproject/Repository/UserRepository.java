@@ -51,10 +51,10 @@ public class UserRepository implements CrudOperations<User, String> {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
         try {
-            int rowsAffected = jdbcTemplate.update(sql, username,hashedPassword, name);
+            int rowsAffected = jdbcTemplate.update(sql, username, hashedPassword, name);
             if (rowsAffected > 0) {
 
-                return authenticateLogin(username,password).get(0);
+                return authenticateLogin(username, password).get(0);
             } else {
                 return null;
             }

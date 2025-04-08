@@ -17,7 +17,7 @@ public class Wishlist {
     }
 
     @Override
-    public String   toString() {
+    public String toString() {
         return "Wishlist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +

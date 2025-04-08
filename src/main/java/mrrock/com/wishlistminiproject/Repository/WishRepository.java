@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class WishRepository implements CrudOperations<Wish,String>{
+public class WishRepository implements CrudOperations<Wish, String> {
 
     private final JdbcTemplate jdbcTemplate;
 
@@ -18,24 +18,24 @@ public class WishRepository implements CrudOperations<Wish,String>{
     }
 
 
-    public List<Wish> getWishFromWishlistID(String id){
+    public List<Wish> getWishFromWishlistID(String id) {
         String sql = "Select * from WISH where WISH_WISHLIST_ID = ?";
-        return jdbcTemplate.query(sql,new WishRowMapper(),id);
+        return jdbcTemplate.query(sql, new WishRowMapper(), id);
     }
 
-    public Wish createNewWish(Wish wish){
+    public Wish createNewWish(Wish wish) {
         String sql = "Insert into WISH (WISH_WISHLIST_ID,WISH_NAME,WISH_DESC,WISH_IMGURL,WISH_PRICE,WISH_URL,WISH_ID) values (?,?,?,?,?,?,?)";
-        int rowsAffected = jdbcTemplate.update(sql,wish.getWishlistID(),wish.getName(),wish.getDescription(),wish.getImgURL(),wish.getPrice(),wish.getWishURL(), UUID.randomUUID().toString());
-        if (rowsAffected>0){
+        int rowsAffected = jdbcTemplate.update(sql, wish.getWishlistID(), wish.getName(), wish.getDescription(), wish.getImgURL(), wish.getPrice(), wish.getWishURL(), UUID.randomUUID().toString());
+        if (rowsAffected > 0) {
             return wish;
         }
         return null;
     }
 
-    public Wish reserveWishFromId(String wishID){
+    public Wish reserveWishFromId(String wishID) {
         String sql = "UPDATE WISH SET WISH_RESERVED = 1 where WISH_ID = ?";
-        int rowsAffected = jdbcTemplate.update(sql,wishID);
-        if (rowsAffected>0){
+        int rowsAffected = jdbcTemplate.update(sql, wishID);
+        if (rowsAffected > 0) {
             return findById(wishID);
         }
         return null;
@@ -57,8 +57,8 @@ public class WishRepository implements CrudOperations<Wish,String>{
     @Override
     public Wish findById(String wishID) {
         String sql = "Select * from WISH where WISH_ID = ?";
-        List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
-        if (!wishlist.isEmpty()){
+        List<Wish> wishlist = jdbcTemplate.query(sql, new WishRowMapper(), wishID);
+        if (!wishlist.isEmpty()) {
             return wishlist.getFirst();
         }
         return null;
