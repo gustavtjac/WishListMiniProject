@@ -26,7 +26,7 @@ public class UserRepository implements CrudOperations<User, String> {
 
     public List<User> authenticateLogin(String username, String password) {
         // SQL query to fetch the stored hashed password for the given username
-        String sql = "SELECT * FROM USER WHERE USER_USERNAME = ?";
+        String sql = "SELECT * FROM USERS WHERE USER_USERNAME = ?";
 
         try {
             User user = jdbcTemplate.queryForObject(sql, new Object[]{username}, new UserRowMapper());
@@ -46,15 +46,14 @@ public class UserRepository implements CrudOperations<User, String> {
     }
 
     public User registerNewUser(String username, String password, String name) {
-        String sql = "Insert into USER (USER_USERNAME,USER_PASSWORD,USER_NAME) values (?,?,?)";
+        String sql = "Insert into USERS (USER_USERNAME,USER_PASSWORD,USER_NAME) values (?,?,?)";
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(password);
-        System.out.println(hashedPassword);
-        System.out.println(hashedPassword.chars().count());
         try {
             int rowsAffected = jdbcTemplate.update(sql, username,hashedPassword, name);
             if (rowsAffected > 0) {
+
                 return authenticateLogin(username,password).get(0);
             } else {
                 return null;
@@ -87,7 +86,7 @@ public class UserRepository implements CrudOperations<User, String> {
 
     @Override
     public User findById(String username) {
-        String sql = "Select * from user where user_username = ?";
+        String sql = "SELECT * FROM USERS WHERE USER_USERNAME = ?";
         List<User> userList = jdbcTemplate.query(sql, new UserRowMapper(), username);
         if (!userList.isEmpty()) {
             return userList.getFirst();

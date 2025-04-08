@@ -23,7 +23,7 @@ public class WishListService {
 
 
     public List<Wishlist> getAllwishListsFromUserID(int id){
-        List<Wishlist> userWishList = wishRepository.getAllwishListsFromUserID(id);
+        List<Wishlist> userWishList = wishListRepository.getAllwishListsFromUserID(id);
         for (Wishlist wishlist : userWishList){
             wishlist.setWishList(wishRepository.getWishFromWishlistID(wishlist.getId()));
         }

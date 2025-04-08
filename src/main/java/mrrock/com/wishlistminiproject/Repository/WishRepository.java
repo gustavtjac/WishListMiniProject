@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class WishRepository implements CrudOperations<Wish,String>{
@@ -18,18 +19,15 @@ public class WishRepository implements CrudOperations<Wish,String>{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Wishlist> getAllwishListsFromUserID(int id){
-        String sql = "Select * from wishlist where WISHLIST_USER_ID = ?";
-        return jdbcTemplate.query(sql,new WishlistRowMapper(),id);
-    }
+
     public List<Wish> getWishFromWishlistID(String id){
-        String sql = "Select * from wish where WISH_WISHLIST_ID = ?";
+        String sql = "Select * from WISH where WISH_WISHLIST_ID = ?";
         return jdbcTemplate.query(sql,new WishRowMapper(),id);
     }
 
     public Wish createNewWish(Wish wish){
-        String sql = "Insert into WISH (WISH_WISHLIST_ID,WISH_NAME,WISH_DESC,WISH_IMGURL,WISH_PRICE,WISH_URL) values (?,?,?,?,?,?)";
-        int rowsAffected = jdbcTemplate.update(sql,wish.getWishlistID(),wish.getName(),wish.getDescription(),wish.getImgURL(),wish.getPrice(),wish.getWishURL());
+        String sql = "Insert into WISH (WISH_WISHLIST_ID,WISH_NAME,WISH_DESC,WISH_IMGURL,WISH_PRICE,WISH_URL,WISH_ID) values (?,?,?,?,?,?,?)";
+        int rowsAffected = jdbcTemplate.update(sql,wish.getWishlistID(),wish.getName(),wish.getDescription(),wish.getImgURL(),wish.getPrice(),wish.getWishURL(), UUID.randomUUID().toString());
         if (rowsAffected>0){
             return wish;
         }
@@ -46,7 +44,7 @@ public class WishRepository implements CrudOperations<Wish,String>{
     }
 
     public boolean deleteWishFromID(String wishID) {
-        String wishSql = "DELETE FROM wish WHERE WISH_ID = ?";
+        String wishSql = "DELETE FROM WISH WHERE WISH_ID = ?";
         int rowsaffectedWish = jdbcTemplate.update(wishSql, wishID);
 
         if (rowsaffectedWish > 0) {
@@ -63,7 +61,7 @@ public class WishRepository implements CrudOperations<Wish,String>{
 
     @Override
     public Wish findById(String wishID) {
-        String sql = "Select * from wish where WISH_ID = ?";
+        String sql = "Select * from WISH where WISH_ID = ?";
         List<Wish> wishlist = jdbcTemplate.query(sql,new WishRowMapper(),wishID);
         if (!wishlist.isEmpty()){
             return wishlist.getFirst();
