@@ -10,23 +10,26 @@ public class WishService {
     private final WishRepository wishRepository;
 
     public WishService(WishRepository wishRepository) {
-        this.wishRepository =wishRepository;
+        this.wishRepository = wishRepository;
     }
 
-    public Wish createNewWish(Wish wish){
+    public Wish createNewWish(Wish wish) {
         return wishRepository.createNewWish(wish);
     }
 
-    public Wish getWishFromID(String wishID){
+    public Wish getWishFromID(String wishID) {
         return wishRepository.findById(wishID);
     }
-    public boolean deleteWishFromID(String WishID){
+
+    public boolean deleteWishFromID(String WishID) {
         return wishRepository.deleteWishFromID(WishID);
     }
-    public Wish updateWishFromID(Wish wish){
+
+    public Wish updateWishFromID(Wish wish) {
         return wishRepository.updateWishFromID(wish);
     }
-    public Wish reserveWishFromId(String wishID){
+
+    public Wish reserveWishFromId(String wishID) {
         return wishRepository.reserveWishFromId(wishID);
     }
 

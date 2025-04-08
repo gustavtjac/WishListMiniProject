@@ -20,9 +20,9 @@ public class WishListService {
         this.wishRepository = wishRepository;
     }
 
-    public List<Wishlist> getAllwishListsFromUserID(int id){
+    public List<Wishlist> getAllwishListsFromUserID(int id) {
         List<Wishlist> userWishList = wishListRepository.getAllwishListsFromUserID(id);
-        for (Wishlist wishlist : userWishList){
+        for (Wishlist wishlist : userWishList) {
             wishlist.setWishList(wishRepository.getWishFromWishlistID(wishlist.getId()));
         }
         return userWishList;
@@ -32,22 +32,21 @@ public class WishListService {
         return wishRepository.getWishFromWishlistID(id);
     }
 
-    public Wishlist createNewWishList(String name,int userID){
-        return wishListRepository.createNewWishList(name,userID);
+    public Wishlist createNewWishList(String name, int userID) {
+        return wishListRepository.createNewWishList(name, userID);
     }
 
     public Wishlist getWishlistFromID(String id) {
         return wishListRepository.findById(id);
     }
 
-    public boolean deleteWishlist(String WishlistID){
+    public boolean deleteWishlist(String WishlistID) {
         return wishListRepository.deleteWishlist(WishlistID);
     }
 
-    public Wishlist updateWishListFromID(Wishlist wishlist){
+    public Wishlist updateWishListFromID(Wishlist wishlist) {
         return wishListRepository.updateWishListFromID(wishlist);
     }
-
 
 
 }

@@ -30,15 +30,15 @@ public class UserRepositoryTest {
     public void findById() throws SQLException {
 
         //arrange
-        User newUser = userRepository.registerNewUser("testUser","123","testUserName");
+        User newUser = userRepository.registerNewUser("testUser", "123", "testUserName");
 
         //Act
         User foundUser = userRepository.findById("testUser");
 
         //Assert
         assertNotNull(foundUser);
-        Assertions.assertEquals(newUser.getName(),foundUser.getName());
-        Assertions.assertEquals(newUser.getId(),foundUser.getId());
+        Assertions.assertEquals(newUser.getName(), foundUser.getName());
+        Assertions.assertEquals(newUser.getId(), foundUser.getId());
 
     }
 

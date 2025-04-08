@@ -26,35 +26,28 @@ public class WishListRepositoryTest {
 
     @Autowired
     private WishListRepository wishListRepository;
-    @Autowired UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Test
     public void checkIfUserOwnsWishList() throws SQLException {
         //Laver en ny bruger til testen
         //Arrange
-User testUser = userRepository.registerNewUser("tester","123","tester");
+        User testUser = userRepository.registerNewUser("tester", "123", "tester");
 
 //opretter en ny ønskeliste med foreignkeyen af den nye bruger
-        Wishlist newWishList = wishListRepository.createNewWishList("testListe",userRepository.findById("tester").getId());
+        Wishlist newWishList = wishListRepository.createNewWishList("testListe", userRepository.findById("tester").getId());
 
         //Act
         List<Wishlist> denNyeBrugersØnsker = wishListRepository.getAllwishListsFromUserID(userRepository.findById("tester").getId());
 
         //Assert
-        Assertions.assertNotEquals("Gamingliste",denNyeBrugersØnsker.get(0).getName());
-       Assertions.assertEquals("testListe", denNyeBrugersØnsker.get(0).getName());
-       assertNotNull(denNyeBrugersØnsker);
-
-
-
-
-
-
-
+        Assertions.assertNotEquals("Gamingliste", denNyeBrugersØnsker.get(0).getName());
+        Assertions.assertEquals("testListe", denNyeBrugersØnsker.get(0).getName());
+        assertNotNull(denNyeBrugersØnsker);
 
 
     }
-
 
 
 }

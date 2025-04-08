@@ -32,10 +32,9 @@ public class WishlistControllerTest {
 
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
 
     }
-
 
 
     @Test
@@ -56,12 +55,8 @@ public class WishlistControllerTest {
         testUser.setPassword("123");
         testUser.setId(1);
         testUser.setUsername("testusername");
-        mockMvc.perform(get("/login").sessionAttr("user",testUser)).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/"+testUser.getUsername()));
+        mockMvc.perform(get("/login").sessionAttr("user", testUser)).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/" + testUser.getUsername()));
     }
-
-
-
-
 
 
 }
